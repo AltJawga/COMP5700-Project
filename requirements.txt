@@ -1,0 +1,11 @@
+transformers==4.41.0
+torch
+PyPDF2
+pdfplumber
+pyyaml
+pandas
+pytest
+subprocess
+huggingface_hub
+accelerate
+os
