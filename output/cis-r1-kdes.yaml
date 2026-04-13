@@ -1,0 +1,52 @@
+element1:
+  name: Key Data Elements
+  requirements:
+  - Ensure
+  - Verify
+  - Configure
+  - Set
+  - Disable
+  - Enable
+  - Recommendation Definitions
+  - Title
+  - Assessment Status
+  - Automated
+  - Manual
+  - Profile
+  - Description
+  - Rationale Statement
+  - Impact Statement
+  - Audit Procedure
+  - Remediation Procedure
+  - Default Value
+  - References
+  - CIS Critical Security Controls®
+  - Additional Information
+  - Profile Definitions
+  - Acknowledgements
+  - Recommendations
+  - Control Plane Components
+  - Worker Nodes
+  - Kubelet
+  - Container Optimized OS
+  - Policies
+  - RBAC and Service Accounts
+  - IAM
+  - Pod Security Policies
+  - Worker Node Configuration Files
+  - Kubeconfig File Permissions
+  - Client CA File
+  - Ensure Audit Logs are Collected and Managed
+  - Minimize access to Amazon ECR
+  - Minimize cluster access to read-only for Amazon ECR
+  - Minimize user access to Kubernetes cluster
+  - Ensure that Service Account Tokens are only mounted where necessary
+  - Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes
+    cluster
+  - Ensure that the Cluster-admin role is only used where required
+  - Minimize admission of privileged containers
+  - Minimize admission of containers wishing to share the host process ID namespace
+  - Minimize the admission of containers wishing to share the host IPC namespace
+  - Minimize the admission of containers wishing to share the host network namespace
+  - Minimize the admission of containers with allowPrivilegeEscalation
+  - Ensure that default service accounts are not actively used.
