@@ -1,0 +1,3 @@
+# ignore virtual enviroment 
+.venv
+README2.md
