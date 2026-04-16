@@ -1,12 +1,66 @@
 import os
 import re
-import json
 import yaml
 import torch
 import pdfplumber
-import json_repair
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from google.colab import userdata
+
+# ---------------------------------------------------------------------------
+# Task 1a – Input validation, text extraction, and chunking
+# ---------------------------------------------------------------------------
+
+def load_and_validate_pdfs(doc1_path, doc2_path):
+    documents = [doc1_path, doc2_path]
+    extracted_data = {}
+
+    for doc_path in documents:
+        if not isinstance(doc_path, str):
+            raise TypeError(f"Invalid input type: {doc_path}. Path must be a string.")
+        if not os.path.isfile(doc_path):
+            raise FileNotFoundError(f"File not found: {doc_path}")
+        if not doc_path.lower().endswith('.pdf'):
+            raise ValueError(f"Invalid file format: {doc_path}. File must be a PDF.")
+
+        extracted_data[doc_path] = {
+            "text": "",
+            "tables": []
+        }
+
+        try:
+            with pdfplumber.open(doc_path) as pdf:
+                for page in pdf.pages:
+                    page_text = page.extract_text()
+                    if page_text:
+                        extracted_data[doc_path]["text"] += page_text + "\n"
+                    page_tables = page.extract_tables()
+                    if page_tables:
+                        extracted_data[doc_path]["tables"].extend(page_tables)
+        except Exception as e:
+            raise IOError(f"Failed to open or process the PDF '{doc_path}'. Error: {e}")
+
+    return extracted_data
+
+def format_tables_to_string(tables):
+    if not tables:
+        return "No tabular data found."
+
+    table_strings = []
+    for i, table in enumerate(tables):
+        table_strings.append(f"--- Table {i+1} ---")
+        for row in table:
+            cleaned_row = [
+                str(cell).replace('\n', ' ') if cell is not None else ""
+                for cell in row
+            ]
+            table_strings.append(" | ".join(cleaned_row))
+    return "\n".join(table_strings)
+
+def chunk_content(text, words_per_chunk=3000):
+    if not text:
+        return [""]
+    words = text.split()
+    return [" ".join(words[i:i + words_per_chunk]) for i in range(0, len(words), words_per_chunk)]
 
 
 # ---------------------------------------------------------------------------
@@ -75,92 +129,58 @@ def generate_zero_shot_chunk_prompt(filename, text_chunk, tables_string):
 Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
 KDEs are specific, actionable security specifications (e.g., OAuth 2.0, AES-256, PCI-DSS).
 
-Output ONLY a valid JSON object with this exact structure:
-{{
-  "documents": {{
-    "{filename}": {{
-      "key_data_elements": [
-        {{"category": "<KDE name>", "requirement": "<requirement text>"}}
-      ]
-    }}
-  }}
-}}
-
-### Document: {filename}
-**Text Chunk:**
+Output ONLY a valid YAML block matching this exact nested structure. Do not output JSON.
+```yaml
+element1:
+  name: "<KDE name>"
+  requirements: 
+    - "<requirement text 1>"
+    - "<requirement text 2>"
+element2:
+  name: "<KDE name>"
+  requirements: 
+    - "<requirement text>"
+Document: {filename}
+Text Chunk:
 {text_chunk if text_chunk else "No standard text found."}
 
-**Tables (if any):**
+Tables (if any):
 {tables_string}
 
-Output ONLY the JSON object. Do not add any explanation before or after it.
+Output ONLY the YAML block. Do not add any explanation before or after it.
 """
     return prompt
 
 def generate_few_shot_chunk_prompt(filename, text_chunk, tables_string):
-    prompt = f"""You are an expert Cybersecurity Requirements Analyst.
-Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
-KDEs are specific, actionable security specifications (e.g., OAuth 2.0, AES-256, PCI-DSS).
-
-Output ONLY a valid JSON object using the structure shown in the examples below.
-
-### --- EXAMPLE 1 --- ###
-INPUT:
-Document: AppSec_Policy_v1.pdf
-Text: All external-facing APIs must implement rate limiting. User authentication
-will be handled via OAuth 2.0. Data at rest must be encrypted using AES-256.
-Tables: No tabular data found.
-
-OUTPUT:
-```json
-{{
-  "documents": {{
-    "AppSec_Policy_v1.pdf": {{
-      "key_data_elements": [
-        {{"category": "API Rate Limiting", "requirement": "All external-facing APIs must implement rate limiting."}},
-        {{"category": "Authentication", "requirement": "User authentication will be handled via OAuth 2.0."}},
-        {{"category": "Encryption at Rest", "requirement": "Data at rest must be encrypted using AES-256."}}
-      ]
-    }}
-  }}
-}}
---- END EXAMPLE 1 ---
-Now analyze the following real document chunk and output ONLY the JSON object.
-
-Document: {filename}
-Text Chunk:
-{text_chunk if text_chunk else "No standard text found."}
-
-Tables (if any):
-{tables_string}
-
-Output ONLY the JSON object. Do not add any explanation before or after it.
-"""
-    return prompt
-
-def generate_chain_of_thought_chunk_prompt(filename, text_chunk, tables_string):
   prompt = f"""You are an expert Cybersecurity Requirements Analyst.
 Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
 KDEs are specific, actionable security specifications (e.g., OAuth 2.0, AES-256, PCI-DSS).
 
-Think step-by-step using the following reasoning process before producing your final JSON output:
-Step 1 – Read the chunk content carefully.
-Step 2 – Identify every sentence that describes a concrete security control or compliance requirement.
-Step 3 – Assign a short descriptive KDE category name (e.g., "Encryption at Rest", "Access Control").
-Step 4 – Write the requirement verbatim or paraphrase it into one clear sentence.
+Output ONLY a valid YAML block using the nested structure shown in the examples below. Do not output JSON.
 
-Output your reasoning for each step, then end with a clearly labelled section "FINAL JSON OUTPUT:" containing ONLY the JSON object.
+--- EXAMPLE 1 ---
+INPUT:
+Document: AppSec_Policy_v1.pdf
+Text: All external-facing APIs must implement rate limiting. User authentication will be handled via OAuth 2.0. Data at rest must be encrypted using AES-256.
 
-JSON structure required:
-{{
-"documents": {{
-"{filename}": {{
-"key_data_elements": [
-{{"category": "<KDE name>", "requirement": "<requirement text>"}}
-]
-}}
-}}
-}}
+OUTPUT:
+
+YAML
+element1:
+  name: "API Rate Limiting"
+  requirements: 
+    - "All external-facing APIs must implement rate limiting."
+element2:
+  name: "Authentication"
+  requirements: 
+    - "User authentication will be handled via OAuth 2.0."
+element3:
+  name: "Encryption at Rest"
+  requirements: 
+    - "Data at rest must be encrypted using AES-256."
+--- END EXAMPLE 1 ---
+
+Now analyze the following real document chunk and output ONLY the YAML block.
 
 Document: {filename}
 Text Chunk:
@@ -169,12 +189,42 @@ Text Chunk:
 Tables (if any):
 {tables_string}
 
-Begin your step-by-step reasoning now, then end with "FINAL JSON OUTPUT:" followed by the JSON object only.
+Output ONLY the YAML block. Do not add any explanation before or after it.
+"""
+  return prompt
+
+def generate_chain_of_thought_chunk_prompt(filename, text_chunk, tables_string):
+  prompt = f"""You are an expert Cybersecurity Requirements Analyst.
+Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
+
+Think step-by-step using the following reasoning process before producing your final YAML output:
+Step 1 – Read the chunk content carefully.
+Step 2 – Identify every sentence that describes a concrete security control or compliance requirement.
+Step 3 – Assign a short descriptive KDE category name (e.g., "Encryption at Rest").
+Step 4 – Write the requirement verbatim or paraphrase it into one clear sentence.
+
+Output your reasoning for each step, then end with a clearly labelled section "FINAL YAML OUTPUT:" containing ONLY the nested YAML block.
+
+YAML structure required:
+
+YAML
+element1:
+  name: "<KDE name>"
+  requirements: 
+    - "<requirement text>"
+Document: {filename}
+Text Chunk:
+{text_chunk if text_chunk else "No standard text found."}
+
+Tables (if any):
+{tables_string}
+
+Begin your step-by-step reasoning now, then end with "FINAL YAML OUTPUT:" followed by the YAML block only.
 """
   return prompt
 
 # ---------------------------------------------------------------------------
-# Task 1e – KDE extraction with Gemma 4B and YAML output
+# Task 1e – KDE extraction and YAML output (NO JSON PARSING)
 # ---------------------------------------------------------------------------
 
 def extract_and_save_kdes_with_gemma(
@@ -203,64 +253,41 @@ def extract_and_save_kdes_with_gemma(
     new_tokens  = output_ids[0][inputs["input_ids"].shape[-1]:]
     llm_response = tokenizer.decode(new_tokens, skip_special_tokens=True)
 
-    # Extract JSON safely
-    cot_marker = "FINAL JSON OUTPUT:"
+    # 1. Extract the YAML block safely
+    cot_marker = "FINAL YAML OUTPUT:"
     if cot_marker in llm_response:
-        llm_response_for_json = llm_response[llm_response.index(cot_marker) + len(cot_marker):]
+        llm_response_for_yaml = llm_response[llm_response.index(cot_marker) + len(cot_marker):]
     else:
-        llm_response_for_json = llm_response
+        llm_response_for_yaml = llm_response
 
-    json_match = re.search(r'```json\s*(.*?)\s*```', llm_response_for_json, re.DOTALL)
-
-    if not json_match:
-        start_idx = llm_response_for_json.find('{')
-        end_idx   = llm_response_for_json.rfind('}')
-        if start_idx != -1 and end_idx != -1:
-            json_str = llm_response_for_json[start_idx:end_idx + 1]
-        else:
-            print("  [!] Failed to extract JSON string. Storing raw output fallback.")
-            json_str = '{"documents": {}}'
+    yaml_match = re.search(r'```yaml\s*(.*?)\s*```', llm_response_for_yaml, re.DOTALL)
+    
+    if yaml_match:
+        yaml_str = yaml_match.group(1)
     else:
-        json_str = json_match.group(1)
+        # Fallback if the LLM forgot the markdown backticks
+        yaml_str = llm_response_for_yaml.strip()
 
-    # USING json_repair FOR FORGIVING PARSING
+    # 2. Convert the YAML string directly into a Python Nested Dictionary
     try:
-        extracted_json = json_repair.loads(json_str)
-        if not isinstance(extracted_json, dict):
-             print("  [!] JSON repaired, but structure is invalid. Storing fallback.")
-             extracted_json = {"documents": {}}
-    except Exception as e:
-        print(f"  [!] Irreparable JSON Error: {e}")
-        extracted_json = {"documents": {}}
+        nested_dict = yaml.safe_load(yaml_str)
+        # If the model returned nothing or just a string, reset it
+        if not isinstance(nested_dict, dict):
+             print("  [!] LLM output was not a valid dictionary. Storing fallback.")
+             nested_dict = {}
+    except yaml.YAMLError as e:
+        print(f"  [!] YAML Parsing Error: {e}")
+        nested_dict = {}
 
-    documents_data = extracted_json.get("documents", {})
-
+    # 3. Save the perfectly formatted Nested Dictionary directly to a .yaml file
     for doc_path in document_paths:
         base_name        = os.path.basename(doc_path)
         name_without_ext = os.path.splitext(base_name)[0]
-        # Label YAML so files don't overwrite each other
         yaml_filename    = f"{name_without_ext}_{prompt_type}.yaml"
 
-        doc_json_data = documents_data.get(base_name)
-        if not doc_json_data:
-            continue
-
-        raw_kdes = doc_json_data.get("key_data_elements", [])
-        grouped_kdes = {}
-        for item in raw_kdes:
-            cat_name = item.get("category", "Uncategorized")
-            req_text = item.get("requirement", "Unknown requirement")
-            grouped_kdes.setdefault(cat_name, []).append(req_text)
-
-        final_yaml_structure = {}
-        for element_counter, (category, requirements) in enumerate(grouped_kdes.items(), start=1):
-            final_yaml_structure[f"element{element_counter}"] = {
-                "name": category,
-                "requirements": requirements,
-            }
-
         with open(yaml_filename, 'w') as yaml_file:
-            yaml.dump(final_yaml_structure, yaml_file, default_flow_style=False, sort_keys=False)
+            # default_flow_style=False ensures the clean block-style output requested in the rubric
+            yaml.dump(nested_dict, yaml_file, default_flow_style=False, sort_keys=False)
 
     return {
         "llm_name":    model_id,
@@ -268,6 +295,7 @@ def extract_and_save_kdes_with_gemma(
         "prompt_type": prompt_type,
         "llm_output":  llm_response,
     }
+
 # ---------------------------------------------------------------------------
 # Task 1f – Collect all LLM outputs and dump to a TEXT file
 # ---------------------------------------------------------------------------
@@ -330,36 +358,36 @@ if __name__ == "__main__":
             print(f"\n========================================")
             print(f"Processing Document: {base_name}")
             print(f"========================================")
-
+            
             full_text = pdf_data[doc_path]["text"]
             text_chunks = chunk_content(full_text, words_per_chunk=3000)
             tables_str = format_tables_to_string(pdf_data[doc_path]["tables"])
-
+            
             for i, chunk in enumerate(text_chunks):
                 print(f"\n--- Analyzing Chunk {i+1} of {len(text_chunks)} ---")
-
+                
                 # Pass tables only on the first chunk
                 chunk_tables = tables_str if i == 0 else "No tabular data in this chunk."
-
+                
                 # MATCHING THE EXACT FUNCTION NAMES FROM YOUR SCRIPT
                 prompts_to_run = [
                     (generate_zero_shot_chunk_prompt(base_name, chunk, chunk_tables), "zero_shot"),
                     (generate_few_shot_chunk_prompt(base_name, chunk, chunk_tables), "few_shot"),
                     (generate_chain_of_thought_chunk_prompt(base_name, chunk, chunk_tables), "chain_of_thought")
                 ]
-
+                
                 for prompt_str, ptype in prompts_to_run:
                     print(f"  -> Running {ptype}...")
                     record = extract_and_save_kdes_with_gemma(
                         prompt_string=prompt_str,
-                        document_paths=[doc_path],
+                        document_paths=[doc_path], 
                         prompt_type=f"{ptype}_chunk_{i+1}",
                         model=model,
                         tokenizer=tokenizer,
                     )
-
+                    
                     all_llm_records.append(record)
-
+                    
                     # Prevent VRAM buildup
                     torch.cuda.empty_cache()
 
