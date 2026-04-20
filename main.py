@@ -11,7 +11,6 @@ import yaml
 import pdfplumber
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
-#from datetime import datetime
 
 
 # ---------------------------------------------------------------------------
