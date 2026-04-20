@@ -6,26 +6,28 @@ import pdfplumber
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from google.colab import userdata
 
+
 # ---------------------------------------------------------------------------
-# Task 1a – Input validation, text extraction, and chunking
+# Task 1a – Input validation and text extraction
 # ---------------------------------------------------------------------------
 
 def load_and_validate_pdfs(doc1_path, doc2_path):
+    """
+    Validates that both paths point to readable PDF files, then extracts
+    all text and tables from each.  Returns a dict keyed by file path.
+    """
     documents = [doc1_path, doc2_path]
     extracted_data = {}
 
     for doc_path in documents:
         if not isinstance(doc_path, str):
-            raise TypeError(f"Invalid input type: {doc_path}. Path must be a string.")
+            raise TypeError(f"Invalid input type: {doc_path!r}. Path must be a string.")
         if not os.path.isfile(doc_path):
             raise FileNotFoundError(f"File not found: {doc_path}")
-        if not doc_path.lower().endswith('.pdf'):
+        if not doc_path.lower().endswith(".pdf"):
             raise ValueError(f"Invalid file format: {doc_path}. File must be a PDF.")
 
-        extracted_data[doc_path] = {
-            "text": "",
-            "tables": []
-        }
+        extracted_data[doc_path] = {"text": "", "tables": []}
 
         try:
             with pdfplumber.open(doc_path) as pdf:
@@ -37,95 +39,46 @@ def load_and_validate_pdfs(doc1_path, doc2_path):
                     if page_tables:
                         extracted_data[doc_path]["tables"].extend(page_tables)
         except Exception as e:
-            raise IOError(f"Failed to open or process the PDF '{doc_path}'. Error: {e}")
+            raise IOError(f"Failed to open or process '{doc_path}': {e}")
 
     return extracted_data
 
+
 def format_tables_to_string(tables):
+    """Converts a list of pdfplumber tables into a readable plain-text block."""
     if not tables:
         return "No tabular data found."
 
     table_strings = []
     for i, table in enumerate(tables):
-        table_strings.append(f"--- Table {i+1} ---")
+        table_strings.append(f"--- Table {i + 1} ---")
         for row in table:
             cleaned_row = [
-                str(cell).replace('\n', ' ') if cell is not None else ""
+                str(cell).replace("\n", " ") if cell is not None else ""
                 for cell in row
             ]
             table_strings.append(" | ".join(cleaned_row))
     return "\n".join(table_strings)
 
+
 def chunk_content(text, words_per_chunk=3000):
+    """Splits a long text string into word-count-bounded chunks."""
     if not text:
         return [""]
     words = text.split()
-    return [" ".join(words[i:i + words_per_chunk]) for i in range(0, len(words), words_per_chunk)]
+    return [
+        " ".join(words[i : i + words_per_chunk])
+        for i in range(0, len(words), words_per_chunk)
+    ]
 
 
 # ---------------------------------------------------------------------------
-# Task 1a – Input validation, text extraction, and chunking
-# ---------------------------------------------------------------------------
-
-def load_and_validate_pdfs(doc1_path, doc2_path):
-    documents = [doc1_path, doc2_path]
-    extracted_data = {}
-
-    for doc_path in documents:
-        if not isinstance(doc_path, str):
-            raise TypeError(f"Invalid input type: {doc_path}. Path must be a string.")
-        if not os.path.isfile(doc_path):
-            raise FileNotFoundError(f"File not found: {doc_path}")
-        if not doc_path.lower().endswith('.pdf'):
-            raise ValueError(f"Invalid file format: {doc_path}. File must be a PDF.")
-
-        extracted_data[doc_path] = {
-            "text": "",
-            "tables": []
-        }
-
-        try:
-            with pdfplumber.open(doc_path) as pdf:
-                for page in pdf.pages:
-                    page_text = page.extract_text()
-                    if page_text:
-                        extracted_data[doc_path]["text"] += page_text + "\n"
-                    page_tables = page.extract_tables()
-                    if page_tables:
-                        extracted_data[doc_path]["tables"].extend(page_tables)
-        except Exception as e:
-            raise IOError(f"Failed to open or process the PDF '{doc_path}'. Error: {e}")
-
-    return extracted_data
-
-def format_tables_to_string(tables):
-    if not tables:
-        return "No tabular data found."
-
-    table_strings = []
-    for i, table in enumerate(tables):
-        table_strings.append(f"--- Table {i+1} ---")
-        for row in table:
-            cleaned_row = [
-                str(cell).replace('\n', ' ') if cell is not None else ""
-                for cell in row
-            ]
-            table_strings.append(" | ".join(cleaned_row))
-    return "\n".join(table_strings)
-
-def chunk_content(text, words_per_chunk=3000):
-    """Splits a long text string into smaller chunks to keep the AI focused."""
-    if not text:
-        return [""]
-    words = text.split()
-    return [" ".join(words[i:i + words_per_chunk]) for i in range(0, len(words), words_per_chunk)]
-
-# ---------------------------------------------------------------------------
-# Tasks 1b, 1c, 1d – Chunked Prompt Generators
+# Tasks 1b, 1c, 1d – Prompt generators (one chunk at a time)
 # ---------------------------------------------------------------------------
 
 def generate_zero_shot_chunk_prompt(filename, text_chunk, tables_string):
-    prompt = f"""You are an expert Cybersecurity Requirements Analyst.
+    """Zero-shot prompt: no examples, direct instruction."""
+    return f"""You are an expert Cybersecurity Requirements Analyst.
 Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
 KDEs are specific, actionable security specifications (e.g., OAuth 2.0, AES-256, PCI-DSS).
 
@@ -133,13 +86,15 @@ Output ONLY a valid YAML block matching this exact nested structure. Do not outp
 ```yaml
 element1:
   name: "<KDE name>"
-  requirements: 
+  requirements:
     - "<requirement text 1>"
     - "<requirement text 2>"
 element2:
   name: "<KDE name>"
-  requirements: 
+  requirements:
     - "<requirement text>"
+```
+
 Document: {filename}
 Text Chunk:
 {text_chunk if text_chunk else "No standard text found."}
@@ -149,38 +104,40 @@ Tables (if any):
 
 Output ONLY the YAML block. Do not add any explanation before or after it.
 """
-    return prompt
+
 
 def generate_few_shot_chunk_prompt(filename, text_chunk, tables_string):
-  prompt = f"""You are an expert Cybersecurity Requirements Analyst.
+    """Few-shot prompt: one worked example followed by the real chunk."""
+    return f"""You are an expert Cybersecurity Requirements Analyst.
 Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
 KDEs are specific, actionable security specifications (e.g., OAuth 2.0, AES-256, PCI-DSS).
 
-Output ONLY a valid YAML block using the nested structure shown in the examples below. Do not output JSON.
+Output ONLY a valid YAML block using the nested structure shown in the example below.
 
---- EXAMPLE 1 ---
+--- EXAMPLE ---
 INPUT:
 Document: AppSec_Policy_v1.pdf
-Text: All external-facing APIs must implement rate limiting. User authentication will be handled via OAuth 2.0. Data at rest must be encrypted using AES-256.
+Text: All external-facing APIs must implement rate limiting. User authentication will be
+handled via OAuth 2.0. Data at rest must be encrypted using AES-256.
 
 OUTPUT:
-
-YAML
+```yaml
 element1:
   name: "API Rate Limiting"
-  requirements: 
+  requirements:
     - "All external-facing APIs must implement rate limiting."
 element2:
   name: "Authentication"
-  requirements: 
+  requirements:
     - "User authentication will be handled via OAuth 2.0."
 element3:
   name: "Encryption at Rest"
-  requirements: 
+  requirements:
     - "Data at rest must be encrypted using AES-256."
---- END EXAMPLE 1 ---
+```
+--- END EXAMPLE ---
 
-Now analyze the following real document chunk and output ONLY the YAML block.
+Now analyze the following document chunk and output ONLY the YAML block.
 
 Document: {filename}
 Text Chunk:
@@ -191,10 +148,11 @@ Tables (if any):
 
 Output ONLY the YAML block. Do not add any explanation before or after it.
 """
-  return prompt
+
 
 def generate_chain_of_thought_chunk_prompt(filename, text_chunk, tables_string):
-  prompt = f"""You are an expert Cybersecurity Requirements Analyst.
+    """Chain-of-thought prompt: explicit reasoning steps before final YAML."""
+    return f"""You are an expert Cybersecurity Requirements Analyst.
 Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
 
 Think step-by-step using the following reasoning process before producing your final YAML output:
@@ -203,15 +161,17 @@ Step 2 – Identify every sentence that describes a concrete security control or
 Step 3 – Assign a short descriptive KDE category name (e.g., "Encryption at Rest").
 Step 4 – Write the requirement verbatim or paraphrase it into one clear sentence.
 
-Output your reasoning for each step, then end with a clearly labelled section "FINAL YAML OUTPUT:" containing ONLY the nested YAML block.
+Output your reasoning for each step, then end with a clearly labelled section
+"FINAL YAML OUTPUT:" containing ONLY the nested YAML block.
 
-YAML structure required:
-
-YAML
+Required YAML structure:
+```yaml
 element1:
   name: "<KDE name>"
-  requirements: 
+  requirements:
     - "<requirement text>"
+```
+
 Document: {filename}
 Text Chunk:
 {text_chunk if text_chunk else "No standard text found."}
@@ -221,24 +181,18 @@ Tables (if any):
 
 Begin your step-by-step reasoning now, then end with "FINAL YAML OUTPUT:" followed by the YAML block only.
 """
-  return prompt
+
 
 # ---------------------------------------------------------------------------
-# Task 1e – KDE extraction and YAML output (NO JSON PARSING)
+# Task 1e – Run one prompt against the model; return the parsed dict + record
 # ---------------------------------------------------------------------------
 
-def extract_and_save_kdes_with_gemma(
-    prompt_string,
-    document_paths,
-    prompt_type="zero_shot",
-    model=None,
-    tokenizer=None,
-):
-    model_id = "google/gemma-3-4b-it"
-
-    messages = [
-        {"role": "user", "content": [{"type": "text", "text": prompt_string}]}
-    ]
+def run_prompt_on_chunk(prompt_string, prompt_type, model, tokenizer, model_id):
+    """
+    Feeds a single prompt to Gemma, parses the YAML block from the response,
+    and returns (nested_dict, record_dict).
+    """
+    messages = [{"role": "user", "content": [{"type": "text", "text": prompt_string}]}]
     inputs = tokenizer.apply_chat_template(
         messages,
         add_generation_prompt=True,
@@ -250,62 +204,137 @@ def extract_and_save_kdes_with_gemma(
     with torch.inference_mode():
         output_ids = model.generate(**inputs, max_new_tokens=1500, do_sample=False)
 
-    new_tokens  = output_ids[0][inputs["input_ids"].shape[-1]:]
+    new_tokens = output_ids[0][inputs["input_ids"].shape[-1] :]
     llm_response = tokenizer.decode(new_tokens, skip_special_tokens=True)
 
-    # 1. Extract the YAML block safely
+    # --- extract YAML string ------------------------------------------------
     cot_marker = "FINAL YAML OUTPUT:"
-    if cot_marker in llm_response:
-        llm_response_for_yaml = llm_response[llm_response.index(cot_marker) + len(cot_marker):]
-    else:
-        llm_response_for_yaml = llm_response
+    response_for_yaml = (
+        llm_response[llm_response.index(cot_marker) + len(cot_marker) :]
+        if cot_marker in llm_response
+        else llm_response
+    )
 
-    yaml_match = re.search(r'```yaml\s*(.*?)\s*```', llm_response_for_yaml, re.DOTALL)
-    
-    if yaml_match:
-        yaml_str = yaml_match.group(1)
-    else:
-        # Fallback if the LLM forgot the markdown backticks
-        yaml_str = llm_response_for_yaml.strip()
+    yaml_match = re.search(r"```yaml\s*(.*?)\s*```", response_for_yaml, re.DOTALL)
+    yaml_str = yaml_match.group(1) if yaml_match else response_for_yaml.strip()
 
-    # 2. Convert the YAML string directly into a Python Nested Dictionary
+    # --- parse to dict -------------------------------------------------------
     try:
         nested_dict = yaml.safe_load(yaml_str)
-        # If the model returned nothing or just a string, reset it
         if not isinstance(nested_dict, dict):
-             print("  [!] LLM output was not a valid dictionary. Storing fallback.")
-             nested_dict = {}
+            print("    [!] LLM output was not a valid dict. Storing empty fallback.")
+            nested_dict = {}
     except yaml.YAMLError as e:
-        print(f"  [!] YAML Parsing Error: {e}")
+        print(f"    [!] YAML parse error: {e}")
         nested_dict = {}
 
-    # 3. Save the perfectly formatted Nested Dictionary directly to a .yaml file
-    for doc_path in document_paths:
-        base_name        = os.path.basename(doc_path)
-        name_without_ext = os.path.splitext(base_name)[0]
-        yaml_filename    = f"{name_without_ext}_{prompt_type}.yaml"
-
-        with open(yaml_filename, 'w') as yaml_file:
-            # default_flow_style=False ensures the clean block-style output requested in the rubric
-            yaml.dump(nested_dict, yaml_file, default_flow_style=False, sort_keys=False)
-
-    return {
-        "llm_name":    model_id,
+    record = {
+        "llm_name": model_id,
         "prompt_used": prompt_string,
         "prompt_type": prompt_type,
-        "llm_output":  llm_response,
+        "llm_output": llm_response,
     }
+    return nested_dict, record
+
+
+def merge_kde_dicts(base_dict, new_dict):
+    """
+    Merges new_dict into base_dict with non-colliding element keys.
+    Keys in new_dict are renamed (element1 → elementN) so nothing is overwritten.
+    """
+    if not new_dict:
+        return
+    next_idx = len(base_dict) + 1
+    for value in new_dict.values():
+        base_dict[f"element{next_idx}"] = value
+        next_idx += 1
+
+
+# ---------------------------------------------------------------------------
+# Task 1e (continued) – Full per-document extraction → one YAML per document
+# ---------------------------------------------------------------------------
+
+def extract_and_save_kdes_for_document(
+    doc_path, pdf_data, model, tokenizer, model_id, output_dir="."
+):
+    """
+    Processes a single document through all three prompt types, chunk by chunk.
+    Each prompt type accumulates KDEs across all chunks into one merged dict.
+    At the end the three merged dicts are combined under top-level keys and
+    written to ONE yaml file:  <docname>-kdes.yaml
+
+    Returns a list of all LLM records produced (for the text dump).
+    """
+    base_name = os.path.basename(doc_path)
+    name_no_ext = os.path.splitext(base_name)[0]
+
+    full_text = pdf_data[doc_path]["text"]
+    tables_str = format_tables_to_string(pdf_data[doc_path]["tables"])
+    chunks = chunk_content(full_text, words_per_chunk=3000)
+
+    print(f"\n{'='*60}")
+    print(f"Document : {base_name}  ({len(chunks)} chunk(s))")
+    print(f"{'='*60}")
+
+    # One accumulator per prompt type
+    accumulated = {
+        "zero_shot": {},
+        "few_shot": {},
+        "chain_of_thought": {},
+    }
+    all_records = []
+
+    prompt_builders = {
+        "zero_shot": generate_zero_shot_chunk_prompt,
+        "few_shot": generate_few_shot_chunk_prompt,
+        "chain_of_thought": generate_chain_of_thought_chunk_prompt,
+    }
+
+    # --- outer loop: prompt type; inner loop: chunks -------------------------
+    for ptype, builder in prompt_builders.items():
+        print(f"\n  Prompt type: {ptype}")
+        for i, chunk in enumerate(chunks):
+            # Tables are appended only on the first chunk to avoid repetition
+            chunk_tables = tables_str if i == 0 else "No tabular data in this chunk."
+            prompt_str = builder(base_name, chunk, chunk_tables)
+
+            print(f"    Chunk {i + 1}/{len(chunks)} ...", end=" ", flush=True)
+            chunk_dict, record = run_prompt_on_chunk(
+                prompt_str, f"{ptype}_chunk_{i+1}", model, tokenizer, model_id
+            )
+            print(f"got {len(chunk_dict)} KDE(s)")
+
+            merge_kde_dicts(accumulated[ptype], chunk_dict)
+            all_records.append(record)
+            torch.cuda.empty_cache()
+
+    # --- build the final combined structure ----------------------------------
+    final_yaml_data = {
+        "document": base_name,
+        "zero_shot_kdes": accumulated["zero_shot"],
+        "few_shot_kdes": accumulated["few_shot"],
+        "chain_of_thought_kdes": accumulated["chain_of_thought"],
+    }
+
+    yaml_filename = os.path.join(output_dir, f"{name_no_ext}-kdes.yaml")
+    with open(yaml_filename, "w", encoding="utf-8") as f:
+        yaml.dump(final_yaml_data, f, default_flow_style=False, sort_keys=False)
+    print(f"\n  Saved: {yaml_filename}")
+
+    return all_records
+
 
 # ---------------------------------------------------------------------------
 # Task 1f – Collect all LLM outputs and dump to a TEXT file
 # ---------------------------------------------------------------------------
 
 def collect_and_dump_llm_outputs(llm_records, output_filename="llm_outputs.txt"):
+    """Writes every LLM record to a structured plain-text file."""
     if not llm_records:
         raise ValueError("llm_records list is empty – nothing to write.")
 
     separator = "=" * 80
-    with open(output_filename, 'w', encoding='utf-8') as f:
+    with open(output_filename, "w", encoding="utf-8") as f:
         for i, record in enumerate(llm_records, start=1):
             f.write(f"{separator}\n")
             f.write(f"Record {i} of {len(llm_records)}\n")
@@ -318,6 +347,7 @@ def collect_and_dump_llm_outputs(llm_records, output_filename="llm_outputs.txt")
             f.write(record.get("prompt_used", "N/A") + "\n\n")
             f.write("*LLM Output*\n")
             f.write(record.get("llm_output", "N/A") + "\n\n")
+
     print(f"\nAll LLM outputs saved to '{output_filename}'.")
 
 
@@ -326,22 +356,20 @@ def collect_and_dump_llm_outputs(llm_records, output_filename="llm_outputs.txt")
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # Removed "static/" assuming the files are in the main Colab directory
     file_1 = "static/cis-r1.pdf"
     file_2 = "static/cis-r2.pdf"
     document_paths = [file_1, file_2]
 
     try:
-        # 1. Load and Validate
+        # 1. Load and validate both PDFs
         pdf_data = load_and_validate_pdfs(file_1, file_2)
         print("Successfully loaded and validated both documents.\n")
 
-        # 2. Authenticate and Load Model
-        # Make sure your Colab Secret is actually named 'HF_TOKEN' and not 'HF-Token'
-        hf_token = userdata.get('HF-Token')
-        model_id = "google/gemma-3-4b-it"
+        # 2. Authenticate and load model
+        hf_token = userdata.get("HF-Token")
+        model_id = "google/gemma-3-1b-it"   # as specified in the README
 
-        print(f"Loading {model_id} onto the A100 GPU...")
+        print(f"Loading {model_id} ...")
         tokenizer = AutoTokenizer.from_pretrained(model_id, token=hf_token)
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
@@ -350,50 +378,28 @@ if __name__ == "__main__":
             token=hf_token,
         ).eval()
 
-        # 3. Process Chunk by Chunk
+        # 3. Process each document → one YAML file each
         all_llm_records = []
 
         for doc_path in document_paths:
-            base_name = os.path.basename(doc_path)
-            print(f"\n========================================")
-            print(f"Processing Document: {base_name}")
-            print(f"========================================")
-            
-            full_text = pdf_data[doc_path]["text"]
-            text_chunks = chunk_content(full_text, words_per_chunk=3000)
-            tables_str = format_tables_to_string(pdf_data[doc_path]["tables"])
-            
-            for i, chunk in enumerate(text_chunks):
-                print(f"\n--- Analyzing Chunk {i+1} of {len(text_chunks)} ---")
-                
-                # Pass tables only on the first chunk
-                chunk_tables = tables_str if i == 0 else "No tabular data in this chunk."
-                
-                # MATCHING THE EXACT FUNCTION NAMES FROM YOUR SCRIPT
-                prompts_to_run = [
-                    (generate_zero_shot_chunk_prompt(base_name, chunk, chunk_tables), "zero_shot"),
-                    (generate_few_shot_chunk_prompt(base_name, chunk, chunk_tables), "few_shot"),
-                    (generate_chain_of_thought_chunk_prompt(base_name, chunk, chunk_tables), "chain_of_thought")
-                ]
-                
-                for prompt_str, ptype in prompts_to_run:
-                    print(f"  -> Running {ptype}...")
-                    record = extract_and_save_kdes_with_gemma(
-                        prompt_string=prompt_str,
-                        document_paths=[doc_path], 
-                        prompt_type=f"{ptype}_chunk_{i+1}",
-                        model=model,
-                        tokenizer=tokenizer,
-                    )
-                    
-                    all_llm_records.append(record)
-                    
-                    # Prevent VRAM buildup
-                    torch.cuda.empty_cache()
+            records = extract_and_save_kdes_for_document(
+                doc_path=doc_path,
+                pdf_data=pdf_data,
+                model=model,
+                tokenizer=tokenizer,
+                model_id=model_id,
+                output_dir=".",        # saves to the current Colab directory
+            )
+            all_llm_records.extend(records)
 
-        # 4. Save results
+        # 4. Dump all raw LLM outputs to a text file
         collect_and_dump_llm_outputs(all_llm_records, output_filename="llm_outputs.txt")
-        print("\nFinished! Refresh the file folder on the left to see your output files.")
+        print("\nDone! You should now have:")
+        print("  cis-r1-kdes.yaml")
+        print("  cis-r2-kdes.yaml")
+        print("  llm_outputs.txt")
 
     except Exception as error:
-        print(f"\nScript failed. Error: {error}")
+        import traceback
+        traceback.print_exc()
+        print(f"\nScript failed: {error}")
