@@ -4,7 +4,10 @@ import yaml
 import torch
 import pdfplumber
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from google.colab import userdata
+try:
+    from google.colab import userdata
+except ImportError:
+    userdata = None
 
 
 # ---------------------------------------------------------------------------
