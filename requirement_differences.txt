@@ -1,0 +1,174 @@
+# Requirement differences between 'cis-r1-kdes.yaml' and 'cis-r2-kdes.yaml'
+# Format: NAME,ABSENT-IN-<FILE>,PRESENT-IN-<FILE>,REQ_OR_NA
+--hostname-override,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+--make-iptables-util-chains,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+--protect-kernel-defaults,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Allow Privilege Escalation,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+API server: Enabled,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Audit Logs,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Audit-ability,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Authentication,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Ensure that all external-facing APIs must implement rate limiting.
+Authentication,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,User authentication will be handled via OAuth 2.0
+AWS Credentials,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+AWS Identity and Access Management (IAM),ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+AWS Key Management Service,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+AWS-Auth ConfigMap,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Bind Privilege,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+CIS Controls,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Client CA File Configuration,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+client-ca-file-configuration,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Cluster Access Control,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Cluster Access Manager API,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Cluster Networking,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Cluster Profile,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Cluster Security Group,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+cluster-admin,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Configure Data Access Control Lists,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Consistent Password Configurations,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+consistent-password-changes,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Container Optimized OS,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+container-registry-access,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Create Repository,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Default kubeadm cluster,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Disable Anonymous Authentication,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+EKS Service Quotas,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+eks-service-account,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element1,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Enable audit Logs
+element1,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Ensure that logging, per the enterprise’s audit log management process, has been enabled across enterprise assets.
+element1,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element1,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Minimize access to secrets
+element1,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+element10,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element10,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+element11,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element12,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element13,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element14,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element15,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element16,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element17,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element18,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element19,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element2,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Ensure that the kubeconfig file permissions are set to 644 or more restrictive.
+element2,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element2,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Minimize access to secrets
+element2,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+element20,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+element3,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element3,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+element4,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Ensure that the cluster-admin role is only used where required
+element4,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element4,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Minimize access to secrets
+element4,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+element5,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element5,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+element6,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Ensure that the cluster-admin role is only used where required
+element6,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element6,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Minimize access to secrets
+element6,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+element7,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element7,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+element8,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element8,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+element9,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Correctly establish secure configurations
+element9,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Remediation
+Encrypt Sensitive Data in Transit,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Encryption,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Best practice implementation
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Encrypt Kubernetes secrets, stored in etcd, using secrets encryption feature during Amazon EKS cluster creation.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Encrypt all sensitive information in transit.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Encrypt sensitive data at rest on servers, applications, and databases containing sensitive data.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Encrypt traffic to HTTPS load balancers with TLS certificates.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Ensure that all users with administrative account access use a dedicated or secondary account for elevated activities.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Ensure that sensitive data is encrypted at rest.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Implement encryption at rest for all systems in the enterprise.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Includes, at a minimum, an 8-character password for accounts using MFA and a 14-character password for accounts not using MFA.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Limit access to create pods to the smallest possible group of users.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Restrict access to create new pods to the smallest possible group of users.
+Encryption at Rest,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Use unique passwords for all enterprise assets.
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Audit Logs
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Cluster Access Manager API
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Data at rest must be encrypted using AES-256
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Enable and set as appropriate
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Enable audit logs for Kubernetes components
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Ensure that all options are set to 'Enabled'
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Image Scanning
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Prefer using dedicated EKS Service Accounts
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Streamline and enhance management of access controls
+Encryption at Rest,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Verify that if a file is specified and it exists, the permissions are 644 or more restrictive
+Escalate Privilege,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Extensible Admission Control,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Fargate Profile,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Fargate Profile Creation,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+IAM Authenticator for Kubernetes,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+IAM Permissions,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+IAM Role,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Identity and Access Management,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Ensure that the cluster-admin role is only used where required.
+Identity and Access Management,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Ensure Kubernetes Secrets are encrypted using Customer Master Keys (CMKs) managed in AWS KMS
+Impersonate Privilege,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Implement and Manage a Firewall on Servers,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+kubeconfig permissions,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Kubelet Client Certificate Authentication,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+kubelet configuration,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+kubelet service,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Labels,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Least Privilege,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Managed services,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Minimize admission of containers with capabilities,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Minimize User Access to Amazon ECR,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Network IPC,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Network Policies,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Network Policy,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Define Network Policies
+Network Policy,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Enable Network Policy
+Network Policy,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Restrict access to the control plane endpoint
+Network Policy,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Configure access for all accounts through as few centralized points of authentication
+Network Policy,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Configure network policy
+Network Policy,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Ensure that a Client CA File is Configured
+NetworkPolicy,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+OAuth 2.0,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+PCI-DSS,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Perform Automated Vulnerability Scans of Internal Enterprise Assets,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Pod Execution Role,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Pod Security Admission,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Pod Security Policies,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Pod Security Policy,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Pod Security Standards,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+PodSecurityPolicy,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Policies,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Create administrative boundaries between resources using namespaces.
+Policies,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Conduct general computing activities, such as internet browsing, email, and productivity suite use, from the user's primary, non-privileged account
+Policies,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Restrict Administrator Privileges to Dedicated Administrator Accounts
+protect-kernel-defaults,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Protocols,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+RBAC,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+RBAC and Service Accounts,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Restrict Administrator Privileges,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Restricted Administrator Accounts,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+rotateKubeletServerCertificate,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Run Automated Vulnerability Scanning Tools,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Secret Management,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Minimize wildcard use in Roles and ClusterRoles.
+Secret Management,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Restrict administrator privileges to dedicated administrator accounts.
+Secret Management,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Consider external secret storage
+Secret Management,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Prefer using secrets as files over secrets as environment variables
+Secrets,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Secrets Management,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Manage secrets as files
+Secrets Management,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Prefer using secrets as files over secrets as environment variables.
+Secrets Management,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Secrets are encrypted at rest
+Secrets Management,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Secrets are managed via files
+Secrets Management,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,Use secrets as files
+Secrets Management,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,Prefer using secrets as files over secrets as environment variables
+Secure Configuration Process,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Secure Configurations,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Secure Image Management,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Service Account,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Service Account Management,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Service Account Token Management,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Service Account Token Mounting,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Service Account Tokens,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Standard Hardening Configuration Templates,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+streaming-connection-idle-timeout,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Use Dedicated Administrative Accounts,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+User Access Control,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+User Workloads,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Worker Node Configuration,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA
+Worker Nodes,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA

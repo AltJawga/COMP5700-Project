@@ -1,0 +1,104 @@
+KDE NAME DIFFERENCES BETWEEN 'cis-r1-kdes.yaml' AND 'cis-r2-kdes.yaml'
+======================================================================
+
+Present in 'cis-r1-kdes.yaml' but ABSENT in 'cis-r2-kdes.yaml':
+  - --hostname-override
+  - --make-iptables-util-chains
+  - --protect-kernel-defaults
+  - AWS Credentials
+  - AWS Key Management Service
+  - Audit-ability
+  - CIS Controls
+  - Cluster Profile
+  - Consistent Password Configurations
+  - Container Optimized OS
+  - Disable Anonymous Authentication
+  - EKS Service Quotas
+  - Extensible Admission Control
+  - Fargate Profile
+  - Fargate Profile Creation
+  - IAM Role
+  - Labels
+  - Least Privilege
+  - Minimize admission of containers with capabilities
+  - Network Policies
+  - NetworkPolicy
+  - OAuth 2.0
+  - PCI-DSS
+  - Pod Execution Role
+  - Pod Security Policies
+  - Pod Security Policy
+  - PodSecurityPolicy
+  - RBAC
+  - RBAC and Service Accounts
+  - Secrets
+  - Secure Configuration Process
+  - Secure Image Management
+  - Service Account
+  - Standard Hardening Configuration Templates
+  - Use Dedicated Administrative Accounts
+  - User Access Control
+  - Worker Node Configuration
+  - client-ca-file-configuration
+  - cluster-admin
+  - consistent-password-changes
+  - container-registry-access
+  - eks-service-account
+  - element11
+  - element12
+  - element13
+  - element14
+  - element15
+  - element16
+  - element17
+  - element18
+  - element19
+  - element20
+  - kubeconfig permissions
+  - kubelet configuration
+  - kubelet service
+  - protect-kernel-defaults
+  - streaming-connection-idle-timeout
+
+Present in 'cis-r2-kdes.yaml' but ABSENT in 'cis-r1-kdes.yaml':
+  - API server: Enabled
+  - AWS Identity and Access Management (IAM)
+  - AWS-Auth ConfigMap
+  - Allow Privilege Escalation
+  - Audit Logs
+  - Bind Privilege
+  - Client CA File Configuration
+  - Cluster Access Control
+  - Cluster Access Manager API
+  - Cluster Networking
+  - Cluster Security Group
+  - Configure Data Access Control Lists
+  - Create Repository
+  - Default kubeadm cluster
+  - Encrypt Sensitive Data in Transit
+  - Encryption
+  - Escalate Privilege
+  - IAM Authenticator for Kubernetes
+  - IAM Permissions
+  - Impersonate Privilege
+  - Implement and Manage a Firewall on Servers
+  - Kubelet Client Certificate Authentication
+  - Managed services
+  - Minimize User Access to Amazon ECR
+  - Network IPC
+  - Perform Automated Vulnerability Scans of Internal Enterprise Assets
+  - Pod Security Admission
+  - Pod Security Standards
+  - Protocols
+  - Restrict Administrator Privileges
+  - Restrict Administrator Privileges to Dedicated Administrator Accounts
+  - Restricted Administrator Accounts
+  - Run Automated Vulnerability Scanning Tools
+  - Secure Configurations
+  - Service Account Management
+  - Service Account Token Management
+  - Service Account Token Mounting
+  - Service Account Tokens
+  - User Workloads
+  - Worker Nodes
+  - rotateKubeletServerCertificate
