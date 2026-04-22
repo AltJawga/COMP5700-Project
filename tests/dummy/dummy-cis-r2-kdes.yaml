@@ -1,0 +1,603 @@
+document: cis-r2.pdf
+zero_shot_kdes:
+  element1:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Correctly establish secure configurations
+  element2:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Minimize access to secrets
+  element3:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Minimize access to secrets
+  element4:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Minimize access to secrets
+  element5:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Minimize access to secrets
+  element6:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Minimize access to secrets
+  element7:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Minimize access to secrets
+  element8:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Minimize access to secrets
+  element9:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Minimize access to secrets
+  element10:
+    requirements:
+      - Correctly establish secure configurations
+      - Minimize access to secrets
+      - Remediation
+    Rationale:
+      To ensure the security of the cluster by establishing secure configurations,
+      limiting access to secrets, and remediating any vulnerabilities.
+    Audit: Remediation
+    Impact: Minimize access to secrets
+  element11:
+    name: Kubelet Client Certificate Authentication
+    requirements:
+      - Enable Kubelet authentication using certificates.
+      - Ensure that the apiserver could authenticate the Kubelet before submitting any
+        requests.
+  element12:
+    name: Restrict Administrator Privileges
+    requirements:
+      - "Run the following command (using the config file location identified in the
+        Audit step) chmod 644 /etc/kubernetes/kubelet/config.json Default Value: See
+        the AWS EKS documentation for the default value."
+      - Configure data access control lists v8
+      - "Configure data access control lists based on a user\u2019s need to know."
+      - "Apply data \u25CF \u25CF \u25CF access control lists, also known as access\
+        \ permissions, to local and remote file systems, databases, and applications."
+      - "5.2 Maintain Secure Images Maintain secure images or templates for all systems\
+        \ in the enterprise based on v7 the organization\u2019s approved configuration\
+        \ standards."
+      - "Any new system deployment \u25CF \u25CF or existing system that becomes compromised\
+        \ should be imaged using one of those images or templates."
+  element13:
+    name: Client CA File Configuration
+    requirements:
+      - Ensure that the Anonymous Auth is Not Enabled (Automated)
+      - Disable anonymous requests to the Kubelet server.
+      - "Enable Webhook Authentication by setting the following parameter: 'authentication':
+        { 'webhook': { 'enabled': true } }"
+      - Ensure that the Authorization Mode is set to Webhook.
+  element14:
+    name: rotateKubeletServerCertificate
+    requirements:
+      - authentication:
+          x509:
+            clientCAFile: <path/to/client-ca-file>
+  element15:
+    name: Cluster Access Manager API
+    requirements:
+      - Simplified RBAC and Service Account Management
+      - Improved Auditability and Compliance
+      - Enhanced Scalability and Operational Efficiency
+      - Native Kubernetes Support
+  element16:
+    name: AWS-Auth ConfigMap
+    requirements:
+      - Manual Updates
+      - Risk of Misconfigurations
+      - Operational Overhead
+      - Potential Downtime
+  element17:
+    name: Service Account Token Management
+    requirements:
+      - Reduced Risk of Privilege Escalation
+      - Improved Security
+      - Auditable Access Control
+      - Simplified Management
+  element18:
+    name: Cluster Access Manager API
+    requirements:
+      - Active
+    additional_info: null
+  element19:
+    name: Impersonate Privilege
+    requirements:
+      - Not granted unless strictly required
+    additional_info: null
+  element20:
+    name: Bind Privilege
+    requirements:
+      - Not granted unless strictly required
+    additional_info: null
+  element21:
+    name: Escalate Privilege
+    requirements:
+      - Not granted unless strictly required
+    additional_info: null
+  element22:
+    name: Pod Security Admission
+    requirements:
+      - Enabled
+    additional_info: null
+  element23:
+    name: Restricted Administrator Accounts
+    requirements:
+      - Not granted unless strictly required
+    additional_info: null
+  element24:
+    name: Allow Privilege Escalation
+    requirements:
+      - Not granted unless strictly required
+    additional_info: null
+  element25:
+    name: Network IPC
+    requirements:
+      - Not permitted
+    additional_info: null
+  element26:
+    name: User Workloads
+    requirements:
+      - Not permitted
+    additional_info: null
+  element27:
+    name: Default kubeadm cluster
+    requirements:
+      - No restrictions
+    additional_info: null
+  element28:
+    name: Create Repository
+    requirements:
+      - Restrict Administrator Privileges to Dedicated Administrator Accounts
+      - Ensure the Use of Dedicated Administrative Accounts
+      - "Restrict administrator privileges to dedicated administrator accounts on \u25CF\
+        \ \u25CF \u25CF enterprise assets."
+      - "Conduct general computing activities, such as internet browsing, email, and\
+        \ productivity suite use, from the user\u2019s primary, non-privileged account."
+  element29:
+    name: Create Repository
+    requirements:
+      - Perform Automated Application Patch Management
+      - Ensure that all users with administrative account access use a dedicated or
+        secondary account for elevated activities.
+      - Perform application updates on enterprise assets through automated patch management.
+  element30:
+    name: Create Repository
+    requirements:
+      - Ensure that all users with administrative account access use a dedicated or
+        secondary account for elevated activities.
+      - Perform application updates on enterprise assets through automated patch management.
+  element31:
+    name: Audit Logs
+    requirements:
+      - Enable audit logs
+      - Ensure audit logs are collected and managed
+  element32:
+    name: IAM Authenticator for Kubernetes
+    requirements:
+      - Configure access for all accounts through as few centralized points of authentication
+      - Minimize access to secrets
+  element33:
+    name: Network Policy
+    requirements:
+      - Configure network policy
+      - Ensure that a Client CA File is Configured
+  element34:
+    name: Cluster Security Group
+    requirements:
+      - Ensure that the cluster-admin role is only used where required
+      - Minimize access to create pods
+  element35:
+    name: Secret Management
+    requirements:
+      - Prefer using secrets as files over secrets as environment variables
+      - Consider external secret storage
+  element36:
+    name: Service Account Tokens
+    requirements:
+      - Only mounted where necessary
+      - Added AAC for 4.1.7
+      - Avoid use of system:masters group
+    additional_details:
+      - Ensure all Namespaces have Network Policies defined
+      - Added AAC for 4.3.2
+      - Prefer using secrets as files over secrets as environment variables
+      - Added AAC for 4.4.1
+      - Prefer using dedicated EKS Service Accounts Page
+      - "Ticket 19589 \u2013 Reassessed EKS 3.2.7"
+      - "Ticket 18577 \u2013 Added specific audit command for ensuring clusters are\
+        \ created with private endpoints"
+      - Recommendation 5.3.3
+      - "Ticket 18576 \u2013 updated audit and remediation guidance for ensure network\
+        \ policy is enabled"
+      - Recommendation 5.4.4
+      - "Ticket 17212 \u2013 Edited 4.5 Admission Controls Section. It will be revised\
+        \ in VNext."
+      - "Ticket 17102 \u2013 Replaced deprecated and out of date Pod Security Policy\
+        \ verbiage with pod Security Standards"
+      - "Ticket 15928 \u2013 Recommendation 3.2.9 updated"
+      - "Ticket 15915 \u2013 Pod Security Policy deprecated"
+      - "Ticket 15913 \u2013 recommendation 3.2.9 updated Event QPS deprecated"
+      - "Ticket 16516 \u2013 recommendation 3.2.8 - hostname-overide remediation process\
+        \ updated"
+      - "Ticket 15654 \u2013 ELS Audit Log impact statement updated"
+      - "Ticket 15618 \u2013 recommendation 3.2.5 updated audit and remediation methods"
+      - "Ticket 15677 \u2013 Ensure all Namespaces have Network Policies defined"
+      - "Ticket 15532 \u2013 recommendation 5.4.2 updated remediation process"
+      - "Ticket 15533 \u2013 recommendation 5.4.4 updated"
+      - "Ticket 15599 \u2013 recommendation 5.4.5 reviewed load balancer scope"
+      - "Ticket 15554 \u2013 recommendation 5.5.1 updated default configuration"
+      - "Ticket 15614 \u2013 recommendation 3.2.1 updated remediation process"
+      - "Ticket 17054 \u2013 recommendation 5.4.1 updated for EKS specifically"
+few_shot_kdes:
+  element1:
+    name: "API server: Enabled"
+    requirements:
+      - Enable audit logging
+      - Ensure audit logs are collected and managed
+      - Ensure that local logging has been enabled on all systems
+      - Ensure that the kubeconfig file permissions are set to 644 or more restrictive
+    impact: Correctly
+    assessment_status: Correctly
+    audit_log_enabled: "true"
+    audit_log_collected: "true"
+    audit_log_managed: "true"
+  element2:
+    name: Worker Nodes
+    requirements:
+      - Ensure that the cluster-admin role is only used where required
+      - Minimize access to secrets
+      - Minimize wildcard use in Roles and ClusterRoles
+      - Minimize access to create pods
+    impact: Correctly
+    assessment_status: Correctly
+  element3:
+    name: Secrets Management
+    requirements:
+      - Prefer using secrets as files over secrets as environment variables
+      - Consider external secret storage
+    impact: Correctly
+    assessment_status: Correctly
+  element4:
+    name: Policies
+    requirements:
+      - Restrict Administrator Privileges to Dedicated Administrator Accounts
+      - Conduct general computing activities, such as internet browsing, email, and
+        productivity suite use, from the user's primary, non-privileged account
+    impact: Correctly
+    assessment_status: Correctly
+  element5:
+    name: Managed services
+    requirements:
+      - Ensure that the default namespace should not be used
+    impact: Correctly
+    assessment_status: Correctly
+  element6:
+    name: Protocols
+    requirements:
+      - Restrict Access to the Control Plane Endpoint
+      - Ensure that the default namespace should not be used
+    impact: Correctly
+    assessment_status: Correctly
+  element7:
+    name: API Rate Limiting
+    requirements:
+      - All external-facing APIs must implement rate limiting.
+  element8:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0.
+  element9:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256.
+  element10:
+    name: API Rate Limiting
+    requirements:
+      - All external-facing APIs must implement rate limiting.
+  element11:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0.
+  element12:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256.
+  element13:
+    name: API Rate Limiting
+    requirements:
+      - All external-facing APIs must implement rate limiting.
+  element14:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0.
+  element15:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256.
+  element16:
+    name: Cluster Access Manager API
+    requirements:
+      - Simplified access management through AWS IAM
+      - Improved auditability and traceability
+      - Enhanced scalability and resilience
+      - Native support in Kubernetes 1.23
+  element17:
+    name: AWS Identity and Access Management (IAM)
+    requirements:
+      - Centralized management of access policies
+      - Granular access control at the Kubernetes level
+      - Auditable changes and compliance
+      - Integration with CloudTrail
+  element18:
+    name: Service Account Management
+    requirements:
+      - Least privilege access
+      - IAM Roles for Service Accounts (IRSA)
+      - Pod Identity Feature
+      - Dynamic permissions
+  element19:
+    name: API Rate Limiting
+    requirements:
+      - All external-facing APIs must implement rate limiting.
+  element20:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0.
+  element21:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256.
+  element22:
+    name: Cluster Networking
+    requirements:
+      - Enable Endpoint Private Access
+      - Restrict public access to the API server
+  element23:
+    name: Encryption
+    requirements:
+      - Use encryption at rest
+      - Use encryption at rest
+  element24:
+    name: IAM Permissions
+    requirements:
+      - Restrict administrator privileges
+      - Restrict administrator privileges
+  element25:
+    name: Audit Logs
+    requirements:
+      - Ensure audit logs are collected and managed
+  element26:
+    name: IAM Authenticator for Kubernetes
+    requirements:
+      - Configure access for all accounts through as few centralized points of authentication
+  element27:
+    name: Network Policy
+    requirements:
+      - Configure access for all accounts through as few centralized points of authentication
+  element28:
+    name: Secret Management
+    requirements:
+      - Prefer using secrets as files over secrets as environment variables
+  element29:
+    name: Cluster Networking
+    requirements:
+      - Restrict Access to the Control Plane Endpoint
+  element30:
+    name: Pod Security Standards
+    requirements:
+      - Minimize the admission of containers wishing to share the host process ID namespace
+  element31:
+    name: Managed Services
+    requirements:
+      - Manage Kubernetes RBAC users with AWS IAM Authenticator for Kubernetes or Upgrade
+        to AWS CLI v1.16.156 or greater
+  element32:
+    name: Identity and Access Management
+    requirements:
+      - Ensure Kubernetes Secrets are encrypted using Customer Master Keys (CMKs) managed
+        in AWS KMS
+  element33:
+    name: Cluster Networking
+    requirements:
+      - Restrict Access to the Control Plane Endpoint
+  element34:
+    name: Network Policy
+    requirements:
+      - Configure access for all accounts through as few centralized points of authentication
+  element35:
+    name: API Rate Limiting
+    requirements:
+      - All external-facing APIs must implement rate limiting.
+  element36:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0.
+  element37:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256.
+  element38:
+    name: Service Account Token Mounting
+    requirements:
+      - Only mount Service Account Tokens where necessary
+      - Add AAC for 4.1.7
+      - Avoid use of system:masters group
+  element39:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0
+  element40:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256
+chain_of_thought_kdes:
+  element1:
+    name: Encryption at Rest
+    requirements:
+      - Enable audit logs for Kubernetes components
+      - Ensure that all options are set to 'Enabled'
+      - Verify that if a file is specified and it exists, the permissions are 644 or
+        more restrictive
+  element2:
+    name: Configure Data Access Control Lists
+    requirements:
+      - "Based on a user\u2019s need to know"
+      - "Implement data \u25CF \u25CF \u25CF access control lists"
+  element3:
+    name: Cluster Access Manager API
+    requirements:
+      - Simplified Access Management
+      - Enhanced Security Controls
+      - Improved Visibility and Auditing
+      - Faster and Safer Access Provisioning
+      - Future-Proofing and Alignment with AWS Best Practices
+  element4:
+    name: Cluster Access Control
+    requirements:
+      - "Audit: Review user access to cluster roles and roles with impersonate, bind,
+        and escalate permissions."
+      - "Audit: Review users who have access to cluster roles or roles that provide
+        the impersonate, bind, or escalate privileges."
+      - "Audit: Review the users who have access to cluster roles or roles which provide
+        the escalate privilege."
+      - "Audit: Review the users who have access to cluster roles or roles which provide
+        the allowPrivilegeEscalation."
+  element5:
+    name: Restrict Administrator Privileges
+    requirements:
+      - Implement and Manage Dedicated Administrative Accounts
+      - Ensure that all users with administrative account access use a dedicated or
+        secondary account for elevated activities.
+      - Implement and Maintain Automated Application Patch Management
+      - Perform application updates on enterprise assets through automated patch management.
+      - Perform application updates on enterprise assets through automated patch management.
+  element6:
+    name: Secure Configurations
+    requirements:
+      - Establish and Maintain Dedicated Computing Resources for All Administrative
+        Work
+      - "Conduct general computing activities, such as internet browsing, email, and\
+        \ productivity suite use, from the user\u2019s primary, non-privileged account."
+      - Perform application updates on enterprise assets through automated patch management.
+  element7:
+    name: Implement and Manage a Firewall on Servers
+    requirements:
+      - Implement and manage a firewall on servers, where supported.
+      - Segment the network based on sensitivity
+      - "Segment the network based on the label or classification level of the \u25CF\
+        \ \u25CF information stored on the servers, locate all sensitive information\
+        \ on separated Virtual Local Area Networks (VLANs)."
+      - "Segment the network based on the label or classification level of the \u25CF\
+        \ \u25CF information stored on the servers, locate all sensitive information\
+        \ on separated Virtual Local Area Networks (VLANs)."
+  element8:
+    name: Encrypt Sensitive Data in Transit
+    requirements:
+      - Encrypt sensitive data in transit.
+      - Encrypt sensitive data at rest using a tool that requires a secondary authentication
+        mechanism not integrated into the operating system, in order to access the information.
+  element9:
+    name: Perform Automated Vulnerability Scans of Internal Enterprise Assets
+    requirements:
+      - Perform automated vulnerability scans of internal enterprise assets on a monthly,
+        or more frequent, basis.
+      - Perform automated vulnerability scans of externally-exposed enterprise assets
+        on a monthly, or more frequent, basis.
+  element10:
+    name: Run Automated Vulnerability Scanning Tools
+    requirements:
+      - "Utilize an up-to-date SCAP-compliant vulnerability scanning tool to automatically\
+        \ scan all systems on the network on a weekly or more frequent basis to identify\
+        \ all potential vulnerabilities on the organization\u2019s systems."
+      - "Utilize an up-to-date SCAP-compliant vulnerability scanning tool to automatically\
+        \ scan all systems on the network on a weekly or more frequent basis to identify\
+        \ all potential vulnerabilities on the organization\u2019s systems."
+  element11:
+    name: Minimize User Access to Amazon ECR
+    requirements:
+      - Minimize user access to Amazon ECR.
+      - Restrict user access to Amazon ECR, limiting interaction with build images to
+        only authorized personnel and service accounts.
+  element12:
+    name: Restrict Administrator Privileges to Dedicated Administrator Accounts
+    requirements:
+      - "Restrict administrator privileges to dedicated administrator accounts on \u25CF\
+        \ \u25CF \u25CF enterprise assets."
+      - "Conduct general computing activities, such as internet browsing, email, and\
+        \ productivity suite use, from the user\u2019s primary, non-privileged account."
+      - "Ensure that all users with administrative account access use a dedicated or\
+        \ \u25CF \u25CF \u25CF secondary account for elevated activities."
+      - Allowlist authorized container registries.
+      - Establish and maintain dedicated computing resources, either physically or logically
+        separated, for all administrative tasks or tasks requiring administrative access.
+  element13:
+    name: Encryption at Rest
+    requirements:
+      - Prefer using dedicated EKS Service Accounts
+      - Enable and set as appropriate
+      - Audit Logs
+      - Image Scanning
+      - Cluster Access Manager API
+      - Streamline and enhance management of access controls

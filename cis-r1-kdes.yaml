@@ -1,0 +1,712 @@
+document: cis-r1.pdf
+zero_shot_kdes:
+  element1:
+    requirements:
+      - Enable audit Logs
+      - "Ensure that logging, per the enterprise\u2019s audit log management process,\
+        \ has been enabled across enterprise assets."
+    impact:
+      - Audit Logs
+    referrals:
+      - 1
+    references:
+      - 1
+  element2:
+    requirements:
+      - Ensure that the kubeconfig file permissions are set to 644 or more restrictive.
+    impact:
+      - Automated
+    referrals:
+      - 1
+  element3:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element4:
+    requirements:
+      - Ensure that the cluster-admin role is only used where required
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element5:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element6:
+    requirements:
+      - Ensure that the cluster-admin role is only used where required
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element7:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element8:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element9:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element10:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element11:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element12:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element13:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element14:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element15:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element16:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element17:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element18:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element19:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element20:
+    requirements:
+      - Minimize access to secrets
+    impact:
+      - Manual
+    referrals:
+      - 1
+  element21:
+    name: kubeconfig permissions
+    requirements:
+      - stat -c %A /var/lib/kubelet/kubeconfig
+      - chmod 644 /var/lib/kubelet/kubeconfig
+      - chown root:root /var/lib/kubelet/kubeconfig
+      - configure data access control lists v8
+      - "configure data access control lists based on a user\u2019s need to know"
+      - ensure Anonymous Auth is not enabled
+      - Ensure that the --authorization-mode argument is not set to AlwaysAllow
+      - Ensure that the Authorization Mode is not set to AlwaysAllow
+      - Ensure that the Webhook Authentication is not enabled
+      - Ensure that the Webhook Authentication is not enabled
+      - Ensure that the Authorization Mode is not set to Webhook
+      - Disable Dormant Accounts v8
+      - Delete or disable any dormant accounts after a period of 45 days of inactivity
+      - Protect Information through Access Control Lists
+      - Protect all information stored on systems with file system, network share, claims,
+        application, or database specific access control lists
+      - Enforce the principle that only authorized individuals should have access to
+        the information based on their need to access the information as a part of their
+        responsibilities
+  element22:
+    name: kubelet configuration
+    requirements:
+      - ps -ef | grep kubelet
+      - stat -c %U:%G /var/lib/kubelet/kubeconfig
+      - less /path/to/kubelet-config.json
+      - sudo less /path/to/kubelet-config.json
+      - chmod 644 /path/to/kubelet-config.json
+      - chown root:root /path/to/kubelet-config.json
+      - configure data access control lists v8
+      - "configure data access control lists based on a user\u2019s need to know"
+      - ensure Anonymous Auth is not enabled
+      - Ensure that the --authorization-mode argument is not set to AlwaysAllow
+      - Ensure that the Authorization Mode is not set to AlwaysAllow
+      - Ensure that the Webhook Authentication is not enabled
+      - Ensure that the Webhook Authentication is not enabled
+      - Ensure that the Authorization Mode is not set to Webhook
+      - Disable Dormant Accounts v8
+      - Delete or disable any dormant accounts after a period of 45 days of inactivity
+      - Protect Information through Access Control Lists
+      - Protect all information stored on systems with file system, network share, claims,
+        application, or database specific access control lists
+      - Enforce the principle that only authorized individuals should have access to
+        the information based on their need to access the information as a part of their
+        responsibilities
+  element23:
+    name: kubelet service
+    requirements:
+      - sudo systemctl status kubelet
+      - ps -ef | grep kubelet
+      - sudo less /path/to/kubelet-config.json
+      - chmod 644 /path/to/kubelet-config.json
+      - chown root:root /path/to/kubelet-config.json
+      - configure data access control lists v8
+      - "configure data access control lists based on a user\u2019s need to know"
+      - ensure Anonymous Auth is not enabled
+      - Ensure that the --authorization-mode argument is not set to AlwaysAllow
+      - Ensure that the Authorization Mode is not set to AlwaysAllow
+      - Ensure that the Webhook Authentication is not enabled
+      - Ensure that the Webhook Authentication is not enabled
+      - Ensure that the Authorization Mode is not set to Webhook
+      - Disable Dormant Accounts v8
+      - Delete or disable any dormant accounts after a period of 45 days of inactivity
+      - Protect Information through Access Control Lists
+      - Protect all information stored on systems with file system, network share, claims,
+        application, or database specific access control lists
+      - Enforce the principle that only authorized individuals should have access to
+        the information based on their need to access the information as a part of their
+        responsibilities
+  element24:
+    name: consistent-password-changes
+    requirements:
+      - consistent-password-changes
+      - consistent-password-changes
+  element25:
+    name: client-ca-file-configuration
+    requirements:
+      - client-ca-file
+      - client-ca-file
+  element26:
+    name: streaming-connection-idle-timeout
+    requirements:
+      - streaming-connection-idle-timeout
+      - streaming-connection-idle-timeout
+  element27:
+    name: protect-kernel-defaults
+    requirements:
+      - protect-kernel-defaults
+      - protect-kernel-defaults
+  element28:
+    name: --make-iptables-util-chains
+    requirements:
+      - makeIPTablesUtilChains
+      - makeIPTablesUtilChains
+  element29:
+    name: --hostname-override
+    requirements:
+      - --hostname-override
+      - --hostname-override
+  element30:
+    name: --protect-kernel-defaults
+    requirements:
+      - --protect-kernel-defaults
+      - --protect-kernel-defaults
+  element31:
+    name: --make-iptables-util-chains
+    requirements:
+      - makeIPTablesUtilChains
+      - makeIPTablesUtilChains
+  element32:
+    name: --hostname-override
+    requirements:
+      - --hostname-override
+      - --hostname-override
+  element33:
+    name: --protect-kernel-defaults
+    requirements:
+      - --protect-kernel-defaults
+      - --protect-kernel-defaults
+  element34:
+    name: cluster-admin
+    requirements:
+      - wide-ranging privileges
+      - super-user access
+  element35:
+    name: RBAC and Service Accounts
+    requirements:
+      - restricted access
+      - dedicated administrator accounts
+  element36:
+    name: Secrets
+    requirements:
+      - restricted access
+      - least privilege
+  element37:
+    name: Use Dedicated Administrative Accounts
+    requirements:
+      - dedicated or secondary account
+      - only for administrative activities
+  element38:
+    name: eks-service-account
+    requirements:
+      - Use dedicated EKS Service Account
+      - Use IAM roles for service accounts
+      - Least privilege
+  element39:
+    name: container-registry-access
+    requirements:
+      - Approved container registries
+      - Secure storage of master images
+      - Limited access to authorized cloud storage or email providers
+  element40:
+    name: OAuth 2.0
+    requirements:
+      - Implement OAuth 2.0 authentication and authorization flows
+      - Securely manage user credentials
+  element41:
+    name: PCI-DSS
+    requirements:
+      - Ensure compliance with PCI DSS requirements
+      - Implement data encryption and masking
+  element42:
+    name: CIS Controls
+    requirements:
+      - Establish and Maintain Dedicated Computing Resources
+      - Ensure the Use of Dedicated Administrative Accounts
+      - Implement and Manage a Firewall on Servers
+      - Define and Maintain Role-Based Access Control
+      - Encrypt Sensitive Data in Transit
+      - Apply Host-based Firewalls or Port Filtering
+      - Manage Kubernetes RBAC users with AWS IAM Authenticator for Kubernetes
+      - Define and Maintain Role-Based Access Control
+      - Configure Centralized Point of Authentication
+  element43:
+    name: AWS Key Management Service
+    requirements:
+      - Ensure the Use of Dedicated Administrative Accounts
+      - Enable IAM Roles for Service Accounts on your cluster
+      - Use AWS Key Management Service (KMS) Customer Managed Keys (CMK)
+  element44:
+    name: EKS Service Quotas
+    requirements:
+      - Establish and Maintain Dedicated Computing Resources
+      - Ensure the Use of Dedicated Administrative Accounts
+      - Implement and Manage a Firewall on Servers
+      - Define and Maintain Role-Based Access Control
+      - Encrypt Sensitive Data in Transit
+      - Apply Host-based Firewalls or Port Filtering
+      - Manage Kubernetes RBAC users with AWS IAM Authenticator for Kubernetes
+      - Define and Maintain Role-Based Access Control
+      - Configure Centralized Point of Authentication
+  element45:
+    name: Minimize admission of containers with capabilities
+    requirements:
+      - Minimize the admission of containers with capabilities
+      - Ensure CNI plugin supports network policies
+      - Ensure that all Namespaces have Network Policies
+      - Minimize user access to Amazon ECR
+      - Minimize cluster access to read-only for Amazon ECR
+      - Minimize Container Registries to only those approved
+      - Minimize Access to create pods
+      - Minimize allowPrivilegeEscalation
+      - Minimize root containers
+      - Minimize containers with added capabilities
+      - Minimize admission of containers with capabilities
+      - Minimize admission of containers with assigned capabilities
+      - Minimize administrative boundaries between resources using namespaces
+      - Manage Kubernetes RBAC users with AWS IAM
+      - Authenticator for Kubernetes
+      - Remediation process updated
+few_shot_kdes:
+  element1:
+    name: API Rate Limiting
+    requirements:
+      - All external-facing APIs must implement rate limiting.
+  element2:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0.
+  element3:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256.
+  element4:
+    name: API Rate Limiting
+    requirements:
+      - All external-facing APIs must implement rate limiting.
+  element5:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0.
+  element6:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256.
+  element7:
+    name: Secure Configuration Process
+    requirements:
+      - Review and update documentation annually, or when significant enterprise changes
+        occur.
+  element8:
+    name: Secure Image Management
+    requirements:
+      - Use secure images or templates for all systems.
+      - Maintain secure images or templates for all systems.
+  element9:
+    name: Secret Management
+    requirements:
+      - Restrict administrator privileges to dedicated administrator accounts.
+      - Minimize wildcard use in Roles and ClusterRoles.
+  element10:
+    name: User Access Control
+    requirements:
+      - Establish and maintain a secure configuration process.
+      - Minimize wildcard use in Roles and ClusterRoles.
+  element11:
+    name: Pod Security Policy
+    requirements:
+      - Minimize the admission of containers wishing to share the host IPC namespace
+      - Restrict administrator privileges to dedicated administrator accounts
+      - Minimize the admission of containers wishing to share the host network namespace
+  element12:
+    name: PodSecurityPolicy
+    requirements:
+      - "privileged: false"
+      - "allowPrivilegeEscalation: false"
+      - "requiredDropCapabilities: - ALL"
+      - "spec.runAsUser.rule: MustRunAsNonRoot"
+  element13:
+    name: NetworkPolicy
+    requirements:
+      - networkPolicy is defined
+  element14:
+    name: Secrets Management
+    requirements:
+      - Secrets are managed via files
+      - Secrets are encrypted at rest
+  element15:
+    name: Extensible Admission Control
+    requirements:
+      - Namespace boundaries are defined
+      - Namespace policies are applied
+  element16:
+    name: IAM Role
+    requirements:
+      - Kubernetes workloads should not use cluster node service accounts to authenticate
+        to Amazon EKS APIs.
+      - Each Kubernetes workload that needs to authenticate to other AWS services using
+        AWS IAM should be provisioned with a dedicated Service account.
+  element17:
+    name: Service Account
+    requirements:
+      - Each Kubernetes workload that needs to authenticate to other AWS services using
+        AWS IAM should be provisioned with a dedicated Service account.
+  element18:
+    name: Least Privilege
+    requirements:
+      - By using the IAM roles for service accounts feature, you no longer need to provide
+        extended permissions to the worker node IAM role so that pods on that node can
+        call AWS APIs.
+  element19:
+    name: AWS Credentials
+    requirements:
+      - Applications must sign their AWS API requests with AWS credentials.
+  element20:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0.
+      - Ensure that all external-facing APIs must implement rate limiting.
+  element21:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256.
+  element22:
+    name: Audit-ability
+    requirements:
+      - Access and event logging is available through CloudTrail to help ensure retrospective
+        auditing.
+      - To get started, see list text here
+  element23:
+    name: Fargate Profile
+    requirements:
+      - Specify which pods should use Fargate
+  element24:
+    name: Cluster Profile
+    requirements:
+      - Define a cluster name
+      - Specify a namespace
+      - Define a name for the Fargate profile
+  element25:
+    name: Pod Execution Role
+    requirements:
+      - Specify the pod execution role
+  element26:
+    name: Labels
+    requirements:
+      - Add a key-value pair to the labels
+  element27:
+    name: Service Account
+    requirements:
+      - Specify a service account
+  element28:
+    name: IAM Role
+    requirements:
+      - Specify an IAM role
+  element29:
+    name: Network Policy
+    requirements:
+      - Enable Network Policy
+  element30:
+    name: Secrets Management
+    requirements:
+      - Use secrets as files
+      - Consider external secret storage
+  element31:
+    name: Container Optimized OS
+    requirements:
+      - Prefer using a container-optimized OS
+  element32:
+    name: RBAC
+    requirements:
+      - Manage Kubernetes RBAC users
+  element33:
+    name: Pod Security Policies
+    requirements:
+      - Minimize admission of privileged containers
+      - Minimize admission of containers wishing to share the host process ID namespace
+      - Minimize admission of containers wishing to share the host IPC namespace
+      - Minimize admission of containers wishing to share the host network namespace
+      - Minimize the admission of containers with allowPrivilegeEscalation
+      - Minimize the admission of root containers
+  element34:
+    name: Network Policy
+    requirements:
+      - Restrict access to the control plane endpoint
+      - Define Network Policies
+  element35:
+    name: Secrets Management
+    requirements:
+      - Manage secrets as files
+      - Consider external secret storage
+  element36:
+    name: Container Optimized OS
+    requirements:
+      - Prefer using a container-optimized OS
+  element37:
+    name: RBAC
+    requirements:
+      - Manage Kubernetes RBAC users
+  element38:
+    name: IAM Role
+    requirements:
+      - Specify an IAM role
+  element39:
+    name: Network Policy
+    requirements:
+      - Restrict access to the control plane endpoint
+      - Define Network Policies
+  element40:
+    name: Secrets Management
+    requirements:
+      - Manage secrets as files
+      - Consider external secret storage
+  element41:
+    name: Container Optimized OS
+    requirements:
+      - Prefer using a container-optimized OS
+  element42:
+    name: RBAC
+    requirements:
+      - Manage Kubernetes RBAC users
+  element43:
+    name: API Rate Limiting
+    requirements:
+      - All external-facing APIs must implement rate limiting.
+  element44:
+    name: Authentication
+    requirements:
+      - User authentication will be handled via OAuth 2.0.
+  element45:
+    name: Encryption at Rest
+    requirements:
+      - Data at rest must be encrypted using AES-256.
+chain_of_thought_kdes:
+  element1:
+    name: Disable Anonymous Authentication
+    requirements:
+      - Run the below command (based on the file location on your system) on the each
+        worker node. For example, Page 22 chmod 644 /var/lib/kubelet/kubeconfig
+    description: Disable anonymous requests to the Kubelet server.
+    references:
+      - https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
+    audit:
+      - SSH to the worker nodes to check if the Kubelet Service is running.
+  element2:
+    name: Consistent Password Configurations
+    requirements:
+      - All new assets must have all default passwords consistently configured.
+      - Ensure that all default passwords are consistent with administrative level accounts.
+  element3:
+    name: Encryption at Rest
+    requirements:
+      - Ensure that sensitive data is encrypted at rest.
+      - Implement encryption at rest for all systems in the enterprise.
+  element4:
+    name: Encryption at Rest
+    requirements:
+      - Best practice implementation
+      - Includes, at a minimum, an 8-character password for accounts using MFA and a
+        14-character password for accounts not using MFA.
+      - Use unique passwords for all enterprise assets.
+      - Limit access to create pods to the smallest possible group of users.
+      - Restrict access to create new pods to the smallest possible group of users.
+      - Ensure that all users with administrative account access use a dedicated or
+        secondary account for elevated activities.
+      - Ensure that all users with administrative account access use a dedicated or
+        secondary account for elevated activities.
+  element5:
+    name: Standard Hardening Configuration Templates
+    requirements:
+      - Use standard, industry-recommended hardening configuration templates for application
+        infrastructure.
+      - Maintain documented, standard security configuration standards for all authorized
+        operating systems and software.
+      - Use standard, industry-recommended hardening configuration templates for application
+        infrastructure.
+      - Ensure that namespaces are created to allow for appropriate segregation of Kubernetes
+        resources and that all new resources are created in a specific namespace.
+      - Establish Secure Configurations v7 Maintain documented, standard security configuration
+        standards for all authorized operating systems and software.
+  element6:
+    name: Encryption at Rest
+    requirements:
+      - Encrypt Kubernetes secrets, stored in etcd, using secrets encryption feature
+        during Amazon EKS cluster creation.
+      - Encrypt sensitive data at rest on servers, applications, and databases containing
+        sensitive data.
+      - Encrypt traffic to HTTPS load balancers with TLS certificates.
+      - Encrypt all sensitive information in transit.
+  element7:
+    name: Fargate Profile Creation
+    requirements:
+      - Define a Fargate profile for pods.
+      - Specify which pods should use Fargate.
+      - Separate Production and Non-Production Systems.
+  element8:
+    name: RBAC and Service Accounts
+    requirements:
+      - Ensure separate environments for production and non-production systems.
+      - Separate Production and Non-Production Systems.
+      - Minimize access to secrets.
+  element9:
+    name: Worker Node Configuration
+    requirements:
+      - Ensure that the kubeconfig file permissions are set to 644 or more restrictive.
+      - Ensure that the kubelet kubeconfig file ownership is set to root:root.
+  element10:
+    name: Container Optimized OS
+    requirements:
+      - Prefer using a container-optimized OS when possible.
+  element11:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element12:
+    name: Secrets Management
+    requirements:
+      - Prefer using secrets as files over secrets as environment variables.
+  element13:
+    name: Identity and Access Management
+    requirements:
+      - Ensure that the cluster-admin role is only used where required.
+  element14:
+    name: Pod Security Policies
+    requirements:
+      - Minimize the admission of privileged containers.
+  element15:
+    name: Policies
+    requirements:
+      - Create administrative boundaries between resources using namespaces.
+  element16:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element17:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element18:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element19:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element20:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element21:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element22:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element23:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element24:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element25:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.
+  element26:
+    name: Network Policies
+    requirements:
+      - Restrict Access to the Control Plane Endpoint.

@@ -1,10 +1,15 @@
 import os
 import re
-import yaml
-import torch
+
 import pdfplumber
+import torch
+import yaml
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from google.colab import userdata
+
+try:
+    from google.colab import userdata
+except ImportError:
+    userdata = None
 
 
 # ---------------------------------------------------------------------------
@@ -67,7 +72,7 @@ def chunk_content(text, words_per_chunk=3000):
         return [""]
     words = text.split()
     return [
-        " ".join(words[i : i + words_per_chunk])
+        " ".join(words[i: i + words_per_chunk])
         for i in range(0, len(words), words_per_chunk)
     ]
 
@@ -79,108 +84,108 @@ def chunk_content(text, words_per_chunk=3000):
 def generate_zero_shot_chunk_prompt(filename, text_chunk, tables_string):
     """Zero-shot prompt: no examples, direct instruction."""
     return f"""You are an expert Cybersecurity Requirements Analyst.
-Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
-KDEs are specific, actionable security specifications (e.g., OAuth 2.0, AES-256, PCI-DSS).
-
-Output ONLY a valid YAML block matching this exact nested structure. Do not output JSON.
-```yaml
-element1:
-  name: "<KDE name>"
-  requirements:
-    - "<requirement text 1>"
-    - "<requirement text 2>"
-element2:
-  name: "<KDE name>"
-  requirements:
-    - "<requirement text>"
-```
-
-Document: {filename}
-Text Chunk:
-{text_chunk if text_chunk else "No standard text found."}
-
-Tables (if any):
-{tables_string}
-
-Output ONLY the YAML block. Do not add any explanation before or after it.
-"""
+    Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
+    KDEs are specific, actionable security specifications (e.g., OAuth 2.0, AES-256, PCI-DSS).
+    
+    Output ONLY a valid YAML block matching this exact nested structure. Do not output JSON.
+    ```yaml
+    element1:
+      name: "<KDE name>"
+      requirements:
+        - "<requirement text 1>"
+        - "<requirement text 2>"
+    element2:
+      name: "<KDE name>"
+      requirements:
+        - "<requirement text>"
+    ```
+    
+    Document: {filename}
+    Text Chunk:
+    {text_chunk if text_chunk else "No standard text found."}
+    
+    Tables (if any):
+    {tables_string}
+    
+    Output ONLY the YAML block. Do not add any explanation before or after it.
+    """
 
 
 def generate_few_shot_chunk_prompt(filename, text_chunk, tables_string):
     """Few-shot prompt: one worked example followed by the real chunk."""
     return f"""You are an expert Cybersecurity Requirements Analyst.
-Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
-KDEs are specific, actionable security specifications (e.g., OAuth 2.0, AES-256, PCI-DSS).
-
-Output ONLY a valid YAML block using the nested structure shown in the example below.
-
---- EXAMPLE ---
-INPUT:
-Document: AppSec_Policy_v1.pdf
-Text: All external-facing APIs must implement rate limiting. User authentication will be
-handled via OAuth 2.0. Data at rest must be encrypted using AES-256.
-
-OUTPUT:
-```yaml
-element1:
-  name: "API Rate Limiting"
-  requirements:
-    - "All external-facing APIs must implement rate limiting."
-element2:
-  name: "Authentication"
-  requirements:
-    - "User authentication will be handled via OAuth 2.0."
-element3:
-  name: "Encryption at Rest"
-  requirements:
-    - "Data at rest must be encrypted using AES-256."
-```
---- END EXAMPLE ---
-
-Now analyze the following document chunk and output ONLY the YAML block.
-
-Document: {filename}
-Text Chunk:
-{text_chunk if text_chunk else "No standard text found."}
-
-Tables (if any):
-{tables_string}
-
-Output ONLY the YAML block. Do not add any explanation before or after it.
-"""
+    Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
+    KDEs are specific, actionable security specifications (e.g., OAuth 2.0, AES-256, PCI-DSS).
+    
+    Output ONLY a valid YAML block using the nested structure shown in the example below.
+    
+    --- EXAMPLE ---
+    INPUT:
+    Document: AppSec_Policy_v1.pdf
+    Text: All external-facing APIs must implement rate limiting. User authentication will be
+    handled via OAuth 2.0. Data at rest must be encrypted using AES-256.
+    
+    OUTPUT:
+    ```yaml
+    element1:
+      name: "API Rate Limiting"
+      requirements:
+        - "All external-facing APIs must implement rate limiting."
+    element2:
+      name: "Authentication"
+      requirements:
+        - "User authentication will be handled via OAuth 2.0."
+    element3:
+      name: "Encryption at Rest"
+      requirements:
+        - "Data at rest must be encrypted using AES-256."
+    ```
+    --- END EXAMPLE ---
+    
+    Now analyze the following document chunk and output ONLY the YAML block.
+    
+    Document: {filename}
+    Text Chunk:
+    {text_chunk if text_chunk else "No standard text found."}
+    
+    Tables (if any):
+    {tables_string}
+    
+    Output ONLY the YAML block. Do not add any explanation before or after it.
+    """
 
 
 def generate_chain_of_thought_chunk_prompt(filename, text_chunk, tables_string):
     """Chain-of-thought prompt: explicit reasoning steps before final YAML."""
     return f"""You are an expert Cybersecurity Requirements Analyst.
-Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
-
-Think step-by-step using the following reasoning process before producing your final YAML output:
-Step 1 – Read the chunk content carefully.
-Step 2 – Identify every sentence that describes a concrete security control or compliance requirement.
-Step 3 – Assign a short descriptive KDE category name (e.g., "Encryption at Rest").
-Step 4 – Write the requirement verbatim or paraphrase it into one clear sentence.
-
-Output your reasoning for each step, then end with a clearly labelled section
-"FINAL YAML OUTPUT:" containing ONLY the nested YAML block.
-
-Required YAML structure:
-```yaml
-element1:
-  name: "<KDE name>"
-  requirements:
-    - "<requirement text>"
-```
-
-Document: {filename}
-Text Chunk:
-{text_chunk if text_chunk else "No standard text found."}
-
-Tables (if any):
-{tables_string}
-
-Begin your step-by-step reasoning now, then end with "FINAL YAML OUTPUT:" followed by the YAML block only.
-"""
+    Your task is to analyze a portion of a security document and extract Key Data Elements (KDEs).
+    
+    Think step-by-step using the following reasoning process before producing your final YAML output:
+    Step 1 – Read the chunk content carefully.
+    Step 2 – Identify every sentence that describes a concrete security control or compliance requirement.
+    Step 3 – Assign a short descriptive KDE category name (e.g., "Encryption at Rest").
+    Step 4 – Write the requirement verbatim or paraphrase it into one clear sentence.
+    
+    Output your reasoning for each step, then end with a clearly labelled section
+    "FINAL YAML OUTPUT:" containing ONLY the nested YAML block.
+    
+    Required YAML structure:
+    ```yaml
+    element1:
+      name: "<KDE name>"
+      requirements:
+        - "<requirement text>"
+    ```
+    
+    Document: {filename}
+    Text Chunk:
+    {text_chunk if text_chunk else "No standard text found."}
+    
+    Tables (if any):
+    {tables_string}
+    
+    Begin your step-by-step reasoning now, then end with "FINAL YAML OUTPUT:" followed by the YAML block only.
+    """
 
 
 # ---------------------------------------------------------------------------
@@ -204,13 +209,13 @@ def run_prompt_on_chunk(prompt_string, prompt_type, model, tokenizer, model_id):
     with torch.inference_mode():
         output_ids = model.generate(**inputs, max_new_tokens=1500, do_sample=False)
 
-    new_tokens = output_ids[0][inputs["input_ids"].shape[-1] :]
+    new_tokens = output_ids[0][inputs["input_ids"].shape[-1]:]
     llm_response = tokenizer.decode(new_tokens, skip_special_tokens=True)
 
     # --- extract YAML string ------------------------------------------------
     cot_marker = "FINAL YAML OUTPUT:"
     response_for_yaml = (
-        llm_response[llm_response.index(cot_marker) + len(cot_marker) :]
+        llm_response[llm_response.index(cot_marker) + len(cot_marker):]
         if cot_marker in llm_response
         else llm_response
     )
@@ -255,7 +260,7 @@ def merge_kde_dicts(base_dict, new_dict):
 # ---------------------------------------------------------------------------
 
 def extract_and_save_kdes_for_document(
-    doc_path, pdf_data, model, tokenizer, model_id, output_dir="."
+        doc_path, pdf_data, model, tokenizer, model_id, output_dir="."
 ):
     """
     Processes a single document through all three prompt types, chunk by chunk.
@@ -272,9 +277,9 @@ def extract_and_save_kdes_for_document(
     tables_str = format_tables_to_string(pdf_data[doc_path]["tables"])
     chunks = chunk_content(full_text, words_per_chunk=3000)
 
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"Document : {base_name}  ({len(chunks)} chunk(s))")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
     # One accumulator per prompt type
     accumulated = {
@@ -300,7 +305,7 @@ def extract_and_save_kdes_for_document(
 
             print(f"    Chunk {i + 1}/{len(chunks)} ...", end=" ", flush=True)
             chunk_dict, record = run_prompt_on_chunk(
-                prompt_str, f"{ptype}_chunk_{i+1}", model, tokenizer, model_id
+                prompt_str, f"{ptype}_chunk_{i + 1}", model, tokenizer, model_id
             )
             print(f"got {len(chunk_dict)} KDE(s)")
 
@@ -367,7 +372,7 @@ if __name__ == "__main__":
 
         # 2. Authenticate and load model
         hf_token = userdata.get("HF-Token")
-        model_id = "google/gemma-3-1b-it"   # as specified in the README
+        model_id = "google/gemma-3-1b-it"  # as specified in the README
 
         print(f"Loading {model_id} ...")
         tokenizer = AutoTokenizer.from_pretrained(model_id, token=hf_token)
@@ -388,7 +393,7 @@ if __name__ == "__main__":
                 model=model,
                 tokenizer=tokenizer,
                 model_id=model_id,
-                output_dir=".",        # saves to the current Colab directory
+                output_dir=".",  # saves to the current Colab directory
             )
             all_llm_records.extend(records)
 
@@ -401,5 +406,6 @@ if __name__ == "__main__":
 
     except Exception as error:
         import traceback
+
         traceback.print_exc()
         print(f"\nScript failed: {error}")
