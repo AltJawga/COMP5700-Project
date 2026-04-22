@@ -147,9 +147,20 @@ def compare_kde_names(
             display = _get_name(key, val)
             result[display.lower()] = display
         return result
+    
+    def merge_sections(data: dict) -> dict:
+        merged = {}
+        """Merge all KDE sections into a single dict for easier processing."""
+        for section in ['zero_shot_kdes', 'few_shot_kdes', 'chain_of_thought_kdes']:
+            if section in data and isinstance(data[section], dict):
+                merged.update(data[section])
+        return merged
+    
+    merged1 = merge_sections(data1)
+    merged2 = merge_sections(data2)
 
-    names1 = name_map(data1)   # {lower: display}  from file1
-    names2 = name_map(data2)   # {lower: display}  from file2
+    names1 = name_map(merged1)   # {lower: display}  from file1
+    names2 = name_map(merged2)   # {lower: display}  from file2
 
     only_in_1 = {n: names1[n] for n in names1 if n not in names2}
     only_in_2 = {n: names2[n] for n in names2 if n not in names1}
@@ -218,9 +229,20 @@ def compare_kde_requirements(
             reqs = _get_requirements(val)
             result[display.lower()] = (display, reqs)
         return result
+    
+    def merge_sections(data: dict) -> dict:
+        merged = {}
+        """Merge all KDE sections into a single dict for easier processing."""
+        for section in ['zero_shot_kdes', 'few_shot_kdes', 'chain_of_thought_kdes']:
+            if section in data and isinstance(data[section], dict):
+                merged.update(data[section])
+        return merged
 
-    map1 = kde_map(data1)
-    map2 = kde_map(data2)
+    merged1 = merge_sections(data1)
+    merged2 = merge_sections(data2)
+    
+    map1 = kde_map(merged1)
+    map2 = kde_map(merged2)
 
     all_names = sorted(set(map1) | set(map2))
 
