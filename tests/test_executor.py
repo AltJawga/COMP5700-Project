@@ -36,6 +36,9 @@ class TestExecutor(unittest.TestCase):
 
         empty_mapping = analyze_and_map_differences("", "")
         self.assertIn("NO DIFFERENCES FOUND", empty_mapping)
+        if os.path.exists("kubescape_controls.txt"):
+            os.remove("kubescape_controls.txt")
+
 
     def test_run_kubescape(self):
         print("testing run kubescape")
