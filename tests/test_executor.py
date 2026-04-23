@@ -1,8 +1,10 @@
 import unittest
+from unittest.mock import patch, MagicMock
 import os
 from executor import read_task2_txt_files, analyze_and_map_differences
 from executor import map_difference_to_kubescape_control, CONTROL_PATTERNS
 import pandas as pd
+import json
 from executor import run_kubescape, export_df_to_csv
 
 class TestExecutor(unittest.TestCase):
@@ -47,10 +49,30 @@ class TestExecutor(unittest.TestCase):
         controls = ["C-0035"]
         input_path = "project-yamls"  # Should exist or be mocked
         try:
-            output = run_kubescape(controls, input_path)
+            fake_output = {
+                "summaryDetails": {
+                    "controls": {
+                        "C-0035": {
+                            "controlID": "C-0035",
+                            "name": "Administrative Roles",
+                            "severity": "Medium",
+                            "ResourceCounters": {"failedResources": 2, "passedResources": 8},
+                            "complianceScore": 80.0
+                        }
+                    }
+                }
+            }
+
+            with patch("executor.subprocess.run") as mock_run:
+                mock_result = MagicMock()
+                mock_result.stdout = json.dumps(fake_output)
+                mock_run.return_value = mock_result
+
+                data = run_kubescape(controls, input_path)
+                output = json.loads(data)
             assert(output)
             self.assertIn("summaryDetails", output)  # Basic check for expected output structure
-            self.assertIn("Administrative Roles", output)
+            self.assertEqual(output["summaryDetails"]["controls"]["C-0035"]["name"], "Administrative Roles")
         except Exception as e:
             self.fail(f"run_kubescape or DataFrame creation failed: {e}")
 
