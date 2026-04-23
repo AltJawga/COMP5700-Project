@@ -1242,7 +1242,7 @@ def kubescape_json_to_df(json_str, input_path):
     # Adjust the path below based on actual Kubescape JSON structure
     results = []
     controls = data["summaryDetails"]["controls"]
-    breakpoint()
+    # breakpoint()
     for cid, control in controls.items():
         rc = control["ResourceCounters"]
     
@@ -1260,7 +1260,7 @@ def kubescape_json_to_df(json_str, input_path):
             "All Resources": total_resources,
             "Compliance score": control["complianceScore"],
         })
-    print(results)
+
     df = pd.DataFrame(results)
     return df
 
