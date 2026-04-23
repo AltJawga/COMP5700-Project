@@ -1,0 +1,5 @@
+FilePath,Severity,Control name,Failed resources,All Resources,Compliance score
+project-yamls,Medium,Administrative Roles,22,914,97.592995
+project-yamls,Medium,Access container service account,688,689,0.14513788
+project-yamls,Low,PSP enabled,0,0,100.0
+project-yamls,Medium,Missing network policy,338,589,42.6146
