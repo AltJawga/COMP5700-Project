@@ -22,9 +22,10 @@ if ! command -v kubescape >/dev/null 2>&1; then
   # Otherwise exit
   if [ "${decision,,}" = "y" ]; then
     curl -s https://raw.githubusercontent.com/kubescape/kubescape/master/install.sh | /bin/bash
-    export PATH=$PATH:~/.kubescape/bin
+    export PATH=$PATH:$HOME/.kubescape/bin
     # Verify that the installation was successful
     command -v kubescape >/dev/null 2>&1 || { echo "Kubescape installation failed. Exiting."; exit 1; }
+    echo "Kubescape installed successfully."
   else
     echo "Skipping kubescape installation. Exiting."
     exit 1
