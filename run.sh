@@ -3,16 +3,28 @@
 # Tell the user that the program is running
 echo "COMP5700 Group Project - Starting..."
 
-# Verify that python, pip, and kubescape are installed
+# Verify that python and pip are installed
 if ! command -v python3 >/dev/null 2>&1; then
   echo "WARNING: python3 is not installed. Exiting."
   exit 1
 elif ! command -v pip3 >/dev/null 2>&1; then
   echo "WARNING: pip3 is not installed. Exiting."
   exit 1
-elif ! command -v kubescape >/dev/null 2>&1; then
-  echo "WARNING: kubescape is not installed. Exiting."
-  exit 1
+fi
+
+# Verify that kubescape is installed, and prompt the user to install it if it isn't
+if ! command -v kubescape >/dev/null 2>&1; then
+  echo "WARNING: kubescape is not installed"
+  read -n 1 -p "kubescape is not installed, would you like to install it? [y/n]   " decision
+
+  # Install it using the command from the kubescape GitHub repo if wanted
+  # Otherwise exit
+  if [ "${decision,,}" = "y" ]; then
+    curl -s https://raw.githubusercontent.com/kubescape/kubescape/master/install.sh | /bin/bash
+  else
+    echo "Skipping kubescape installation. Exiting."
+    exit 1
+  fi
 fi
 
 # Create the python virtual environment
