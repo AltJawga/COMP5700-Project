@@ -41,7 +41,24 @@ echo "Sourcing virtual environment"
 source project5700-venv/bin/activate
 
 # Install requirements
+echo "Installing requirements"
 pip3 install -r ./requirements.txt
+
+# Install pyinstaller
+echo "Installing pyinstaller"
+pip3 install -U pyinstaller
+
+# Build the binary
+echo "Building binary"
+pyinstaller --onefile --name 5700-project main.py
+
+# Verify the build succeeded
+BINARY="./dist/5700-project"
+if [ ! -f "$BINARY" ]; then
+  echo "ERROR: Build failed, binary not found at $BINARY. Exiting."
+  exit 1
+fi
+echo "Build successful!"
 
 # Specify to the user how to enter the file paths to the pdfs
 # This is based off of the examples given in task-4, which state that
@@ -57,6 +74,15 @@ echo
 for i in {1..9};
 do
   read -a input_array -p "   Enter input combination $i:   "
-  echo ${input_array[0]}
-  echo ${input_array[2]}
+  pdf1="${input_array[0]}"
+  pdf2="${input_array[2]}"
+
+  # Validate that both paths were provided
+  if [ -z "$pdf1" ] || [ -z "$pdf2" ]; then
+    echo "   ERROR: Invalid input. Expected format: 'path1 and path2'. Skipping."
+    continue
+  fi
+
+  echo "   Running: $BINARY $pdf1 $pdf2"
+  "$BINARY" "$pdf1" "$pdf2"
 done
