@@ -1,0 +1,78 @@
+# Requirement differences between 'cis-r1' and 'cis-r4'
+# Format: NAME,ABSENT-IN-<FILE>,PRESENT-IN-<FILE>,REQ_OR_NA
+AdministrativeAccountAccessRestriction,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Anonymous Auth,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Anonymous Authentication,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Audit Logs are collected and managed.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Encrypt traffic to HTTPS load balancers with TLS certificates.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Ensure AmazonEKSNetworkingPolicy is Enabled and set as appropriate.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Ensure CNI plugin supports network policies.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Ensure Image Vulnerability Scanning using Amazon ECR.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Ensure all Namespaces have Network Policies defined.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Ensure that the kubelet configuration file has permissions set to 644 or more restrictive.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Ensure that the kubelet configuration file ownership is set to root:root.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Kubelet kubeconfig file ownership is set to root:root.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Manage Kubernetes RBAC users with AWS IAM Authenticator for Kubernetes or Upgrade to AWS CLI.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Minimize Container Registries to only those approved.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Minimize access to create pods.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Minimize cluster access to read-only for Amazon ECR.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Minimize user access to Amazon ECR.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Minimize wildcard use in Roles and ClusterRoles.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Prefer using secrets as files over secrets as environment variables.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Restrict Access to the Control Plane Endpoint.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,kubeconfig file permissions are set to 644 or more restrictive.
+Audit Logging,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Audit Logs,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Audit Procedure Update,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Authentication,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,Consider external secret storage (Manual).
+Authentication,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,Consider using dedicated EKS Service Accounts (Manual).
+Authentication,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,System:masters permissions are configured in the Amazon EKS control plane.
+Automated Vulnerability Scans,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,Perform automated vulnerability scans of externally-exposed enterprise assets
+Automated Vulnerability Scans,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Conduct both authenticated and unauthenticated scans
+Automated Vulnerability Scans,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Minimize user access to Amazon ECR (Manual)
+Automated Vulnerability Scans,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Perform authenticated vulnerability scanning with agents running locally on each system or with remote scanners configured with elevated rights on the system being tested
+Automated Vulnerability Scans,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Perform authenticated vulnerability scanning with agents running locally on each system or with remote scanners that are configured with elevated rights on the system being tested
+Automated Vulnerability Scans,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Perform automated vulnerability scans of internal enterprise assets
+Automated Vulnerability Scans,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Perform scans on a monthly, or more frequent, basis
+AWS Key Management Service (KMS) keys to provide envelope encryption of Kubernetes secrets stored in Amazon EKS,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Certificate Rotation,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Cluster Access Management,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Cluster Access Manager API,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Cluster Access Manager API Activation,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Configure Data Access Control Lists v8,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Control Plane Logging Configuration,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Control Plane Security,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Dedicated Computing Resources,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Disable Anonymous Authentication,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Disable Dormant Accounts,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Disable Public Endpoint Access,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Disable the read-only port,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+ECR Registry Access Control,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Ensure Image Vulnerability Scanning,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Establish Secure Configurations,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Establishing Secure Configurations,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Event Record QPS,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+HostPID Restriction,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+IAM Role Permissions,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Kubelet Certificate Authentication,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Kubernetes Network Policies,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Kubernetes RBAC Management,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Maintain Secure Images,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+makeIPTablesUtilChains,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Minimize access to webhook configuration objects,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Minimize admission of privileged containers,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Network Policies,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Network-Based URL Filters,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+No KDEs,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Password Best Practices,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+RBAC Access Control Restrictions,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Restrict Administrator Privileges,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,Restrict administrator privileges to dedicated administrator accounts on
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Do not generally permit containers to be run with the allowPrivilegeEscalation flag set to true.
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,Do not generally permit containers to share the host network namespace.
+Restrict Administrator Privileges to Dedicated Administrator Accounts v8,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA
+Restrict kubelet configuration file permissions,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Secrets Management,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Secure Images,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Use secure network management and communication protocols (e.g., 802.1X, Wi-Fi Protected Access 2 (WPA2) Enterprise or greater).,ABSENT-IN-cis-r4,PRESENT-IN-cis-r1,NA
+Webhook Authentication Enabled,ABSENT-IN-cis-r1,PRESENT-IN-cis-r4,NA

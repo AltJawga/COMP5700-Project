@@ -1,0 +1,47 @@
+KDE NAME DIFFERENCES BETWEEN 'cis-r2' AND 'cis-r3'
+======================================================================
+
+Present in 'cis-r2' but ABSENT in 'cis-r3':
+  - AWS Identity and Access Management (IAM)
+  - Audit Logs
+  - Cluster Access Control
+  - Cluster Networking
+  - Configure Data Access Control Lists
+  - Encryption
+  - IAM Permissions
+  - Identity and Access Management
+  - Implement and Manage a Firewall on Servers
+  - Managed Services
+  - Minimize User Access to Amazon ECR
+  - Network Policy
+  - Perform Automated Vulnerability Scans of Internal Enterprise Assets
+  - Pod Security Standards
+  - Restrict Administrator Privileges
+  - Run Automated Vulnerability Scanning Tools
+  - Secret Management
+  - Secure Configurations
+  - Service Account Management
+  - Service Account Token Mounting
+
+Present in 'cis-r3' but ABSENT in 'cis-r2':
+  - Access Control
+  - Audit Logging
+  - Authorization Mode
+  - CIS Benchmarks
+  - Configure Data Access Control Lists (ACLs)
+  - ECR Registry Identification
+  - Enable API Server Audit Logs
+  - Endpoint Configuration
+  - Establish Secure Configurations
+  - Establish and Maintain Dedicated Computing Resources for All Administrative Work
+  - Image Scanning and Vulnerability Management
+  - Minimize Admission of Privileged Containers
+  - Minimize the admission of privileged containers
+  - Minimize wildcard use in Roles and ClusterRoles
+  - Pod Security Policy
+  - RBAC and Service Accounts
+  - Restrict Administrator Privileges to Dedicated Administrator Accounts v8
+  - RotateKubeletServerCertificate
+  - Secure Network Management Protocols
+  - Use aws eks create-nodegroup with only private subnets
+  - kubelet file ownership

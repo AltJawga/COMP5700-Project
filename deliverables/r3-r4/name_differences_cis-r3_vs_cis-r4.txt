@@ -1,0 +1,50 @@
+KDE NAME DIFFERENCES BETWEEN 'cis-r3' AND 'cis-r4'
+======================================================================
+
+Present in 'cis-r3' but ABSENT in 'cis-r4':
+  - Access Control
+  - Authorization Mode
+  - CIS Benchmarks
+  - Configure Data Access Control Lists (ACLs)
+  - ECR Registry Identification
+  - Enable API Server Audit Logs
+  - Encrypt Sensitive Data in Transit
+  - Endpoint Configuration
+  - Establish Secure Configurations
+  - Establish and Maintain Dedicated Computing Resources for All Administrative Work
+  - IAM Authenticator for Kubernetes
+  - Image Scanning and Vulnerability Management
+  - Minimize the admission of privileged containers
+  - Minimize wildcard use in Roles and ClusterRoles
+  - Pod Security Policy
+  - RBAC and Service Accounts
+  - RotateKubeletServerCertificate
+  - Secure Network Management Protocols
+  - Use aws eks create-nodegroup with only private subnets
+  - kubelet file ownership
+
+Present in 'cis-r4' but ABSENT in 'cis-r3':
+  - AWS Key Management Service (KMS) keys to provide envelope encryption of Kubernetes secrets stored in Amazon EKS
+  - Anonymous Auth
+  - Anonymous Authentication
+  - Audit Logs
+  - Audit Procedure Update
+  - Automated Vulnerability Scans
+  - Certificate Rotation
+  - Cluster Access Management
+  - Cluster Access Manager API Activation
+  - Configure Data Access Control Lists v8
+  - Control Plane Logging Configuration
+  - Disable the read-only port
+  - ECR Registry Access Control
+  - Establishing Secure Configurations
+  - HostPID Restriction
+  - Kubernetes Network Policies
+  - Kubernetes RBAC Management
+  - Maintain Secure Images
+  - Minimize access to webhook configuration objects
+  - Network Policies
+  - Network-Based URL Filters
+  - RBAC Access Control Restrictions
+  - Webhook Authentication Enabled
+  - makeIPTablesUtilChains

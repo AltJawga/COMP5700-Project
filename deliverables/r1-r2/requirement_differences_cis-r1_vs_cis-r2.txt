@@ -1,0 +1,61 @@
+# Requirement differences between 'cis-r1' and 'cis-r2'
+# Format: NAME,ABSENT-IN-<FILE>,PRESENT-IN-<FILE>,REQ_OR_NA
+AdministrativeAccountAccessRestriction,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+API Rate Limiting,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,Data at rest must be encrypted using AES-256.
+API Rate Limiting,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,User authentication will be handled via OAuth 2.0.
+Audit Logs,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Authentication,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,Consider external secret storage (Manual).
+Authentication,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,Consider using dedicated EKS Service Accounts (Manual).
+Authentication,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,User authentication will be handled via OAuth 2.0.
+Authentication,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,User authentication will be handled via OAuth 2.0
+Automated Vulnerability Scans,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+AWS Identity and Access Management (IAM),ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Cluster Access Control,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Cluster Access Manager API,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Cluster Networking,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Configure Data Access Control Lists,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Control Plane Security,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Dedicated Computing Resources,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Disable Anonymous Authentication,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Disable Dormant Accounts,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Disable Public Endpoint Access,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Encrypt Sensitive Data in Transit,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Encryption,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Encryption at Rest,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,Data at rest must be encrypted using AES-256.
+Encryption at Rest,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Data at rest must be encrypted using AES-256
+Ensure Image Vulnerability Scanning,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Establish Secure Configurations,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Event Record QPS,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+IAM Authenticator for Kubernetes,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+IAM Permissions,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+IAM Role Permissions,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Identity and Access Management,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Implement and Manage a Firewall on Servers,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Kubelet Certificate Authentication,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Managed Services,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Minimize User Access to Amazon ECR,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Network Policy,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+No KDEs,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Password Best Practices,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Perform Automated Vulnerability Scans of Internal Enterprise Assets,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Pod Security Standards,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Restrict Administrator Privileges,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,Ensure that all users with administrative account access use a dedicated or secondary account for elevated activities. This account should only be used for administrative activities and not internet browsing, email, or similar activities.
+Restrict Administrator Privileges,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Ensure that all users with administrative account access use a dedicated or secondary account for elevated activities.
+Restrict Administrator Privileges,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Implement and Maintain Automated Application Patch Management
+Restrict Administrator Privileges,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Implement and Manage Dedicated Administrative Accounts
+Restrict Administrator Privileges,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Perform application updates on enterprise assets through automated patch management.
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,Restrict administrator privileges to dedicated administrator accounts on
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Allowlist authorized container registries.
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Conduct general computing activities, such as internet browsing, email, and productivity suite use, from the user’s primary, non-privileged account.
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Ensure that all users with administrative account access use a dedicated or ● ● ● secondary account for elevated activities.
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Establish and maintain dedicated computing resources, either physically or logically separated, for all administrative tasks or tasks requiring administrative access.
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,Restrict administrator privileges to dedicated administrator accounts on ● ● ● enterprise assets.
+Restrict kubelet configuration file permissions,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Run Automated Vulnerability Scanning Tools,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Secret Management,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Secrets Management,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Secure Configurations,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Secure Images,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA
+Service Account Management,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Service Account Token Mounting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r2,NA
+Use secure network management and communication protocols (e.g., 802.1X, Wi-Fi Protected Access 2 (WPA2) Enterprise or greater).,ABSENT-IN-cis-r2,PRESENT-IN-cis-r1,NA

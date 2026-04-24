@@ -1,0 +1,47 @@
+KDE NAME DIFFERENCES BETWEEN 'cis-r1' AND 'cis-r3'
+======================================================================
+
+Present in 'cis-r1' but ABSENT in 'cis-r3':
+  - AdministrativeAccountAccessRestriction
+  - Automated Vulnerability Scans
+  - Control Plane Security
+  - Dedicated Computing Resources
+  - Disable Anonymous Authentication
+  - Disable Dormant Accounts
+  - Disable Public Endpoint Access
+  - Ensure Image Vulnerability Scanning
+  - Event Record QPS
+  - IAM Role Permissions
+  - Kubelet Certificate Authentication
+  - No KDEs
+  - Password Best Practices
+  - Restrict Administrator Privileges
+  - Restrict kubelet configuration file permissions
+  - Secrets Management
+  - Secure Images
+  - Use secure network management and communication protocols (e.g., 802.1X, Wi-Fi Protected Access 2 (WPA2) Enterprise or greater).
+
+Present in 'cis-r3' but ABSENT in 'cis-r1':
+  - Access Control
+  - Audit Logging
+  - Authorization Mode
+  - CIS Benchmarks
+  - Cluster Access Manager API
+  - Configure Data Access Control Lists (ACLs)
+  - ECR Registry Identification
+  - Enable API Server Audit Logs
+  - Encrypt Sensitive Data in Transit
+  - Endpoint Configuration
+  - Establish and Maintain Dedicated Computing Resources for All Administrative Work
+  - IAM Authenticator for Kubernetes
+  - Image Scanning and Vulnerability Management
+  - Minimize Admission of Privileged Containers
+  - Minimize the admission of privileged containers
+  - Minimize wildcard use in Roles and ClusterRoles
+  - Pod Security Policy
+  - RBAC and Service Accounts
+  - Restrict Administrator Privileges to Dedicated Administrator Accounts v8
+  - RotateKubeletServerCertificate
+  - Secure Network Management Protocols
+  - Use aws eks create-nodegroup with only private subnets
+  - kubelet file ownership

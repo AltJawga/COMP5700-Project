@@ -1,0 +1,53 @@
+KDE NAME DIFFERENCES BETWEEN 'cis-r2' AND 'cis-r4'
+======================================================================
+
+Present in 'cis-r2' but ABSENT in 'cis-r4':
+  - AWS Identity and Access Management (IAM)
+  - Cluster Access Control
+  - Cluster Networking
+  - Configure Data Access Control Lists
+  - Encrypt Sensitive Data in Transit
+  - Encryption
+  - IAM Authenticator for Kubernetes
+  - IAM Permissions
+  - Identity and Access Management
+  - Implement and Manage a Firewall on Servers
+  - Managed Services
+  - Minimize User Access to Amazon ECR
+  - Network Policy
+  - Perform Automated Vulnerability Scans of Internal Enterprise Assets
+  - Pod Security Standards
+  - Restrict Administrator Privileges
+  - Run Automated Vulnerability Scanning Tools
+  - Secret Management
+  - Secure Configurations
+  - Service Account Management
+  - Service Account Token Mounting
+
+Present in 'cis-r4' but ABSENT in 'cis-r2':
+  - AWS Key Management Service (KMS) keys to provide envelope encryption of Kubernetes secrets stored in Amazon EKS
+  - Anonymous Auth
+  - Anonymous Authentication
+  - Audit Logging
+  - Audit Procedure Update
+  - Automated Vulnerability Scans
+  - Certificate Rotation
+  - Cluster Access Management
+  - Cluster Access Manager API Activation
+  - Configure Data Access Control Lists v8
+  - Control Plane Logging Configuration
+  - Disable the read-only port
+  - ECR Registry Access Control
+  - Establishing Secure Configurations
+  - HostPID Restriction
+  - Kubernetes Network Policies
+  - Kubernetes RBAC Management
+  - Maintain Secure Images
+  - Minimize access to webhook configuration objects
+  - Minimize admission of privileged containers
+  - Network Policies
+  - Network-Based URL Filters
+  - RBAC Access Control Restrictions
+  - Restrict Administrator Privileges to Dedicated Administrator Accounts v8
+  - Webhook Authentication Enabled
+  - makeIPTablesUtilChains

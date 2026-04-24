@@ -1,0 +1,51 @@
+KDE NAME DIFFERENCES BETWEEN 'cis-r1' AND 'cis-r4'
+======================================================================
+
+Present in 'cis-r1' but ABSENT in 'cis-r4':
+  - AdministrativeAccountAccessRestriction
+  - Control Plane Security
+  - Dedicated Computing Resources
+  - Disable Anonymous Authentication
+  - Disable Dormant Accounts
+  - Disable Public Endpoint Access
+  - Ensure Image Vulnerability Scanning
+  - Establish Secure Configurations
+  - Event Record QPS
+  - IAM Role Permissions
+  - Kubelet Certificate Authentication
+  - No KDEs
+  - Password Best Practices
+  - Restrict Administrator Privileges
+  - Restrict kubelet configuration file permissions
+  - Secrets Management
+  - Secure Images
+  - Use secure network management and communication protocols (e.g., 802.1X, Wi-Fi Protected Access 2 (WPA2) Enterprise or greater).
+
+Present in 'cis-r4' but ABSENT in 'cis-r1':
+  - AWS Key Management Service (KMS) keys to provide envelope encryption of Kubernetes secrets stored in Amazon EKS
+  - Anonymous Auth
+  - Anonymous Authentication
+  - Audit Logging
+  - Audit Logs
+  - Audit Procedure Update
+  - Certificate Rotation
+  - Cluster Access Management
+  - Cluster Access Manager API
+  - Cluster Access Manager API Activation
+  - Configure Data Access Control Lists v8
+  - Control Plane Logging Configuration
+  - Disable the read-only port
+  - ECR Registry Access Control
+  - Establishing Secure Configurations
+  - HostPID Restriction
+  - Kubernetes Network Policies
+  - Kubernetes RBAC Management
+  - Maintain Secure Images
+  - Minimize access to webhook configuration objects
+  - Minimize admission of privileged containers
+  - Network Policies
+  - Network-Based URL Filters
+  - RBAC Access Control Restrictions
+  - Restrict Administrator Privileges to Dedicated Administrator Accounts v8
+  - Webhook Authentication Enabled
+  - makeIPTablesUtilChains

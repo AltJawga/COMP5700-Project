@@ -1,0 +1,68 @@
+# Requirement differences between 'cis-r1' and 'cis-r3'
+# Format: NAME,ABSENT-IN-<FILE>,PRESENT-IN-<FILE>,REQ_OR_NA
+Access Control,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+AdministrativeAccountAccessRestriction,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Add AAC for 4.1.7
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Add AAC for 4.3.2
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Add AAC for 4.4.1
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Add AAC for 5.2.1
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Avoid use of system:masters group
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Ensure that all Namespaces have Network Policies defined
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Ensure that the --read-only-port is disabled.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Ensure that the --rotate- certificates argument is not present or is set to true.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Ensure that the cluster-admin role is only used where required.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Minimize the admission of containers wishing to share the host network namespace.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Minimize the admission of containers with added capabilities.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Minimize the admission of containers with allowPrivilegeEscalation.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Minimize the admission of containers with capabilities assigned.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Minimize the admission of root containers.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Prefer using a container- optimized OS when possible.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Prefer using dedicated EKS Service Accounts
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Prefer using secrets as files over secrets as environment variables.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,The cluster-admin role should only be used where required.
+API Rate Limiting,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,The default namespace should not be used.
+Audit Logging,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Authentication,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,Consider external secret storage (Manual).
+Authentication,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,Consider using dedicated EKS Service Accounts (Manual).
+Authorization Mode,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Automated Vulnerability Scans,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+CIS Benchmarks,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Cluster Access Manager API,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Configure Data Access Control Lists (ACLs),ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Control Plane Security,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Dedicated Computing Resources,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Disable Anonymous Authentication,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Disable Dormant Accounts,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Disable Public Endpoint Access,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+ECR Registry Identification,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Enable API Server Audit Logs,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Encrypt Sensitive Data in Transit,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Endpoint Configuration,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Ensure Image Vulnerability Scanning,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Establish and Maintain Dedicated Computing Resources for All Administrative Work,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Establish Secure Configurations,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,CIS Control v7
+Establish Secure Configurations,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Establish Secure Configurations
+Event Record QPS,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+IAM Authenticator for Kubernetes,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+IAM Role Permissions,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Image Scanning and Vulnerability Management,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Kubelet Certificate Authentication,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+kubelet file ownership,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Minimize Admission of Privileged Containers,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Minimize the admission of privileged containers,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Minimize wildcard use in Roles and ClusterRoles,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+No KDEs,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Password Best Practices,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Pod Security Policy,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+RBAC and Service Accounts,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Restrict Administrator Privileges,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,Restrict administrator privileges to dedicated administrator accounts on
+Restrict Administrator Privileges to Dedicated Administrator Accounts,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,Restrict Administrator Privileges to Dedicated Administrator Accounts
+Restrict Administrator Privileges to Dedicated Administrator Accounts v8,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Restrict kubelet configuration file permissions,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+RotateKubeletServerCertificate,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Secrets Management,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Secure Images,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA
+Secure Network Management Protocols,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Use aws eks create-nodegroup with only private subnets,ABSENT-IN-cis-r1,PRESENT-IN-cis-r3,NA
+Use secure network management and communication protocols (e.g., 802.1X, Wi-Fi Protected Access 2 (WPA2) Enterprise or greater).,ABSENT-IN-cis-r3,PRESENT-IN-cis-r1,NA

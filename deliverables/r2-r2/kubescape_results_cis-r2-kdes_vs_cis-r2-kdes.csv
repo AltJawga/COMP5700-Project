@@ -1,0 +1,49 @@
+FilePath,Severity,Control name,Failed resources,All Resources,Compliance score
+project-yamls,Medium,Prevent containers from allowing command execution,60,914,93.43545
+project-yamls,Medium,Roles with delete capabilities,176,862,79.58237
+project-yamls,High,Applications credentials in configuration files,44,552,92.028984
+project-yamls,Medium,Non-root containers,379,385,1.5584415
+project-yamls,Low,Access Kubernetes dashboard,0,1247,100.0
+project-yamls,High,List Kubernetes secrets,195,862,77.37819
+project-yamls,Medium,Allow privilege escalation,283,386,26.683939
+project-yamls,Low,Immutable container filesystem,304,385,21.038961
+project-yamls,Low,Configured readiness probe,294,385,23.636364
+project-yamls,Medium,Mount service principal,0,385,100.0
+project-yamls,Medium,Ingress and Egress blocked,338,422,19.905214
+project-yamls,Medium,Delete Kubernetes events,56,862,93.50348
+project-yamls,Medium,Automatic mapping of service account,142,609,76.68308
+project-yamls,Medium,Administrative Roles,20,862,97.67981
+project-yamls,High,Host PID/IPC privileges,10,385,97.402596
+project-yamls,High,HostNetwork access,12,385,96.88312
+project-yamls,Low,SSH server running inside container,0,27,100.0
+project-yamls,Medium,Container hostPort,4,385,98.96104
+project-yamls,High,Writable hostPath mount,16,385,95.844154
+project-yamls,High,Insecure capabilities,8,385,97.92208
+project-yamls,High,HostPath mount,18,385,95.32468
+project-yamls,Low,Network mapping,31,31,0.0
+project-yamls,Medium,Access container service account,649,650,0.15384616
+project-yamls,Medium,Cluster internal networking,31,31,0.0
+project-yamls,Medium,Linux hardening,305,385,20.77922
+project-yamls,Medium,Configured liveness probe,299,385,22.337662
+project-yamls,High,Privileged container,18,385,95.32468
+project-yamls,High,CVE-2021-25742-nginx-ingress-snippet-annotation-vulnerability,0,0,100.0
+project-yamls,Low,Pods in default namespace,189,385,50.90909
+project-yamls,Medium,Sudo in container entrypoint,0,385,100.0
+project-yamls,Medium,Portforwarding privileges,30,862,96.51972
+project-yamls,Medium,No impersonation,21,862,97.563805
+project-yamls,Low,PSP enabled,0,0,100.0
+project-yamls,Low,Naked pods,4,4,0.0
+project-yamls,Medium,Container runtime socket mounted,0,385,100.0
+project-yamls,Low,Image pull policy on latest tag,30,385,92.20779
+project-yamls,Low,Label usage for resources,265,385,31.16883
+project-yamls,Low,K8s common labels usage,293,385,23.896105
+project-yamls,Medium,Images from allowed registry,0,385,0.0
+project-yamls,Medium,CVE-2022-24348-argocddirtraversal,0,0,100.0
+project-yamls,Critical,CVE-2022-39328-grafana-auth-bypass,0,5,100.0
+project-yamls,High,CVE-2022-47633-kyverno-signature-bypass,0,0,100.0
+project-yamls,Medium,Prefer using secrets as files over secrets as environment variables,12,385,96.88312
+project-yamls,Medium,Workload with PVC access,0,552,100.0
+project-yamls,Medium,Missing network policy,338,589,42.6146
+project-yamls,High,Anonymous access enabled,0,285,100.0
+project-yamls,High,Ensure CPU limits are set,313,385,18.701298
+project-yamls,High,Ensure memory limits are set,312,385,18.961039

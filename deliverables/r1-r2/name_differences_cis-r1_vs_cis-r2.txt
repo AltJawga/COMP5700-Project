@@ -1,0 +1,46 @@
+KDE NAME DIFFERENCES BETWEEN 'cis-r1' AND 'cis-r2'
+======================================================================
+
+Present in 'cis-r1' but ABSENT in 'cis-r2':
+  - AdministrativeAccountAccessRestriction
+  - Automated Vulnerability Scans
+  - Control Plane Security
+  - Dedicated Computing Resources
+  - Disable Anonymous Authentication
+  - Disable Dormant Accounts
+  - Disable Public Endpoint Access
+  - Ensure Image Vulnerability Scanning
+  - Establish Secure Configurations
+  - Event Record QPS
+  - IAM Role Permissions
+  - Kubelet Certificate Authentication
+  - No KDEs
+  - Password Best Practices
+  - Restrict kubelet configuration file permissions
+  - Secrets Management
+  - Secure Images
+  - Use secure network management and communication protocols (e.g., 802.1X, Wi-Fi Protected Access 2 (WPA2) Enterprise or greater).
+
+Present in 'cis-r2' but ABSENT in 'cis-r1':
+  - AWS Identity and Access Management (IAM)
+  - Audit Logs
+  - Cluster Access Control
+  - Cluster Access Manager API
+  - Cluster Networking
+  - Configure Data Access Control Lists
+  - Encrypt Sensitive Data in Transit
+  - Encryption
+  - IAM Authenticator for Kubernetes
+  - IAM Permissions
+  - Identity and Access Management
+  - Implement and Manage a Firewall on Servers
+  - Managed Services
+  - Minimize User Access to Amazon ECR
+  - Network Policy
+  - Perform Automated Vulnerability Scans of Internal Enterprise Assets
+  - Pod Security Standards
+  - Run Automated Vulnerability Scanning Tools
+  - Secret Management
+  - Secure Configurations
+  - Service Account Management
+  - Service Account Token Mounting
