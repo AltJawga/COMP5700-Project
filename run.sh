@@ -16,6 +16,7 @@ fi
 if ! command -v kubescape >/dev/null 2>&1; then
   echo "WARNING: kubescape is not installed"
   read -n 1 -p "kubescape is not installed, would you like to install it? [y/n]   " decision
+  echo
 
   # Install it using the command from the kubescape GitHub repo if wanted
   # Otherwise exit
