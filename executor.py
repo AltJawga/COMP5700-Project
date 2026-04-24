@@ -1325,16 +1325,9 @@ def export_df_to_csv(df, filename="kubescape_results.csv"):
     """
     df.to_csv(filename, index=False)
 
-if __name__ == "__main__":
-    # Txt paths currently hardcoded to match test Task2 output
-    file1 = 'name_differences.txt'
-    file2 = 'requirement_differences.txt'
-    content1, content2 = read_task2_txt_files(file1, file2)
+def run_execution_pipeline(name_path, req_path, output_csv="kubescape_results.csv"):
+    content1, content2 = read_task2_txt_files(name_path, req_path)
     controls = analyze_and_map_differences(content1, content2)
     kubescape_output = run_kubescape(controls, "project-yamls")
-    
-    # The dataframe may miss some of the control IDs from kubescape_controls.txt
-    # this if because the kubescape output only includes controls that ran and 
-    # produced results. "project-yamls" used as the FilePath for the csv
     df = kubescape_json_to_df(kubescape_output, "project-yamls")
-    export_df_to_csv(df)
+    export_df_to_csv(df, output_csv)

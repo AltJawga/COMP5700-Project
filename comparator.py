@@ -313,23 +313,33 @@ def main(yaml_path1: str = None, yaml_path2: str = None):
     # Step 1 – load
     data1, fname1, data2, fname2 = load_yaml_files(yaml_path1, yaml_path2)
 
+    def strip_kdes_yaml(fname):
+        base = os.path.basename(fname)
+        if base.endswith('-kdes.yaml'):
+            return base[:-10]  # remove '-kdes.yaml'
+        return os.path.splitext(base)[0]
+
+    short1 = strip_kdes_yaml(fname1)
+    short2 = strip_kdes_yaml(fname2)
+
     # Step 2 – name differences
-    compare_kde_names(data1, fname1, data2, fname2,
-                      output_path="name_differences.txt")
+    compare_kde_names(data1, short1, data2, short2,
+                      output_path=f"name_differences_{short1}_vs_{short2}.txt")
 
     # Step 3 – name + requirement differences
-    compare_kde_requirements(data1, fname1, data2, fname2,
-                             output_path="requirement_differences.txt")
+    compare_kde_requirements(data1, short1, data2, short2,
+                             output_path=f"requirement_differences_{short1}_vs_{short2}.txt")
 
     print("\n[main] Task-2 complete.  Output files:")
-    print("  • name_differences.txt")
-    print("  • requirement_differences.txt")
+    print(f"  • name_differences_{short1}_vs_{short2}.txt")
+    print(f"  • requirement_differences_{short1}_vs_{short2}.txt")
 
-
-if __name__ == "__main__":
-    # Hardcode your file paths here for Google Colab
-    file1_path = "cis-r1-kdes.yaml"
-    file2_path = "cis-r2-kdes.yaml"
-    
-    # Run the main function with the hardcoded paths
-    main(file1_path, file2_path)
+def run_comparator_pipeline(yaml_path1: str = None, yaml_path2: str = None):
+    """
+    Wrapper to run the comparator pipeline with optional explicit YAML paths.
+    """
+    try:
+        main(yaml_path1, yaml_path2)
+    except Exception as e:
+        print(f"[run_comparator_pipeline] ERROR: {e}")
+        sys.exit(1)

@@ -360,11 +360,9 @@ def collect_and_dump_llm_outputs(llm_records, output_filename="llm_outputs.txt")
 # Entry point
 # ---------------------------------------------------------------------------
 
-if __name__ == "__main__":
-    file_1 = "static/cis-r1.pdf"
-    file_2 = "static/cis-r2.pdf"
-    document_paths = [file_1, file_2]
 
+def run_extraction_pipeline(file_1, file_2):
+    document_paths = [file_1, file_2]
     try:
         # 1. Load and validate both PDFs
         pdf_data = load_and_validate_pdfs(file_1, file_2)
@@ -398,14 +396,20 @@ if __name__ == "__main__":
             all_llm_records.extend(records)
 
         # 4. Dump all raw LLM outputs to a text file
-        collect_and_dump_llm_outputs(all_llm_records, output_filename="llm_outputs.txt")
+        def strip_kdes_and_ext(filename):
+            base = os.path.splitext(os.path.basename(filename))[0]
+            return base.replace('-kdes', '')
+
+        base1 = strip_kdes_and_ext(file_1)
+        base2 = strip_kdes_and_ext(file_2)
+        output_filename = f"llm_outputs_{base1}_{base2}.txt"
+        collect_and_dump_llm_outputs(all_llm_records, output_filename=output_filename)
         print("\nDone! You should now have:")
-        print("  cis-r1-kdes.yaml")
-        print("  cis-r2-kdes.yaml")
-        print("  llm_outputs.txt")
+        print(f"  {base1}-kdes.yaml")
+        print(f"  {base2}-kdes.yaml")
+        print(f"  {output_filename}")
 
     except Exception as error:
         import traceback
-
         traceback.print_exc()
         print(f"\nScript failed: {error}")
