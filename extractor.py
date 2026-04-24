@@ -66,7 +66,7 @@ def format_tables_to_string(tables):
     return "\n".join(table_strings)
 
 
-def chunk_content(text, words_per_chunk=3000):
+def chunk_content(text, words_per_chunk=1000):
     """Splits a long text string into word-count-bounded chunks."""
     if not text:
         return [""]
@@ -275,7 +275,7 @@ def extract_and_save_kdes_for_document(
 
     full_text = pdf_data[doc_path]["text"]
     tables_str = format_tables_to_string(pdf_data[doc_path]["tables"])
-    chunks = chunk_content(full_text, words_per_chunk=3000)
+    chunks = chunk_content(full_text, words_per_chunk=1000)
 
     print(f"\n{'=' * 60}")
     print(f"Document : {base_name}  ({len(chunks)} chunk(s))")
@@ -369,7 +369,9 @@ def run_extraction_pipeline(file_1, file_2):
         print("Successfully loaded and validated both documents.\n")
 
         # 2. Authenticate and load model
-        hf_token = userdata.get("HF-Token")
+        hf_token = os.environ.get("HF_TOKEN")
+        if not hf_token:
+            raise ValueError("HF_TOKEN environment variable is not set. Please set it before running.")
         model_id = "google/gemma-3-1b-it"  # as specified in the README
 
         print(f"Loading {model_id} ...")

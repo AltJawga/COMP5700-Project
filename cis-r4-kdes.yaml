@@ -1,0 +1,1161 @@
+document: cis-r4.pdf
+zero_shot_kdes:
+  element1:
+    name: CIS Controls v7
+    requirements:
+    - Implement a robust logging and monitoring system to detect and respond to security
+      incidents.
+    - Enforce multi-factor authentication (MFA) for all critical systems and applications.
+    - Regularly patch and update operating systems and applications with the latest
+      security fixes.
+    - Implement a vulnerability management program to identify and remediate vulnerabilities.
+    - Conduct regular security assessments and penetration testing to identify weaknesses
+      in the system.
+    - Implement a strong password policy and enforce password complexity requirements.
+    - Implement a data loss prevention (DLP) solution to protect sensitive data.
+    - Implement a secure configuration management process to ensure consistent and
+      secure configurations.
+  element2:
+    name: Establish Secure Configurations
+    requirements:
+    - Establish Secure Configurations
+    - Implement Secure Configurations
+  element3:
+    name: API Server Audit Logs
+    requirements:
+    - Enabled
+    - Enabled
+    - Enabled
+    - Enabled
+    - Enabled
+    references:
+    - https://kubernetes.io/docs/tasks/debug-application-cluster/audit/
+    - https://aws.github.io/aws-eks-best-practices/detective/
+    - https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
+    - https://docs.aws.amazon.com/eks/latest/userguide/logging-using-cloudtrail.html
+  element4:
+    name: Control Plane Audit Logs
+    requirements:
+    - Enabled
+    - Enabled
+    - Enabled
+    - Enabled
+    - Enabled
+    references:
+    - https://aws.github.io/aws-eks-best-practices/detective/
+    - https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
+    - https://docs.aws.amazon.com/eks/latest/userguide/logging-using-cloudtrail.html
+  element5:
+    name: Audit Log Management Process
+    requirements:
+    - Establish and Maintain an Audit Log Management Process
+    - Address the collection, review, and retention of audit logs for enterprise assets
+    - Review and update documentation annually, or when significant enterprise changes
+      occur that could impact this
+    - Safeguard
+    references:
+    - https://kubernetes.io/docs/tasks/debug-application-cluster/audit/
+    - https://aws.github.io/aws-eks-best-practices/detective/
+    - https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
+    - https://docs.aws.amazon.com/eks/latest/userguide/logging-using-cloudtrail.html
+  element6:
+    name: anonymous_access
+    requirements:
+    - ensure_anonymous_authentication
+    audit_method: Kubelets can accept configuration via a configuration file and in
+      some cases via command line arguments. It is important to note that parameters
+      provided as command line arguments will override their counterpart parameters
+      in the configuration file (see -- config details in the Kubelet CLI Reference
+      for more info, where you can also find out which configuration parameters can
+      be supplied as a command line argument).
+  element7:
+    name: Client Certificate Authority File
+    requirements:
+    - configured via a command line argument to the kubelet service with --client-ca-file
+    - 'configured in the kubelet configuration file via ''authentication'': { ''x509'':
+      { ''clientCAFile'': ''<path/to/client-ca-file>'' }}'
+  element8:
+    name: RotateKubeletServerCertificate
+    requirements:
+    - RotateKubeletServerCertificate
+    audit:
+      method: 2
+      description: Enable kubelet server certificate rotation.
+      action: Set local proxy port and variables
+  element9:
+    name: cluster-admin
+    requirements:
+    - RBAC and Service Accounts
+    - Restrict Administrator Privileges
+    - Minimize access to secrets
+    - Establish and Maintain a Secure Configuration Process
+    - Review and update documentation annually
+    - End-user devices, including portable and mobile, non-computing/IoT devices,
+      and servers
+    - Software (operating systems and applications)
+    - Namespace-controller
+    - Persistent Volume-binder
+    - Expand-controller
+    - Generic-garbage-collector
+    - ServiceAccount
+    - Kubernetes API
+    - Kubernetes Control Plane
+    - Kubelet Configuration
+    - kubelet Service File
+    - kubelet-config.json
+    - kubelet-service.d/10-kubelet-args.conf
+    - RotateKubeletServerCertificate
+    - FeatureGates
+    - Reconfigure a Node's Kubelet
+    - Audit
+    - RBAC and Service Accounts
+    - Restrict Administrator Privileges
+    - Minimize access to secrets
+    - Establish and Maintain a Secure Configuration Process
+    - Review and update documentation annually
+    - End-user devices, including portable and mobile, non-computing/IoT devices,
+      and servers
+    - Software (operating systems and applications)
+    - Namespace-controller
+    - Persistent Volume-binder
+    - Expand-controller
+    - Generic-garbage-collector
+    - ServiceAccount
+    - Kubernetes API
+    - Kubernetes Control Plane
+    - Kubelet Configuration
+    - kubelet Service File
+    - kubelet-config.json
+    - kubelet-service.d/10-kubelet-args.conf
+    - Audit
+    - RBAC and Service Accounts
+    - Restrict Administrator Privileges
+    - Minimize access to secrets
+    - Establish and Maintain a Secure Configuration Process
+    - Review and update documentation annually
+    - End-user devices, including portable and mobile, non-computing/IoT devices,
+      and servers
+    - Software (operating systems and applications)
+    - Namespace-controller
+    - Persistent Volume-binder
+    - Expand-controller
+    - Generic-garbage-collector
+    - ServiceAccount
+    - Kubernetes API
+    - Kubernetes Control Plane
+    - Kubelet Configuration
+    - kubelet Service File
+    - kubelet-config.json
+    - kubelet-service.d/10-kubelet-args.conf
+    - Audit
+    - RBAC and Service Accounts
+    - Restrict Administrator Privileges
+    - Minimize access to secrets
+    - Establish and Maintain a Secure Configuration Process
+    - Review and update documentation annually
+    - End-user devices, including portable and mobile, non-computing/IoT devices,
+      and servers
+    - Software (operating systems and applications)
+    - Namespace-controller
+    - Persistent Volume-binder
+    - Expand-controller
+    - Generic-garbage-collector
+    - ServiceAccount
+    - Kubernetes API
+    - Kubernetes Control Plane
+    - Kubelet Configuration
+    - kubelet Service File
+    - kubelet-config.json
+    - kubelet-service.d/10-kubelet-args.conf
+    - Audit
+    - RBAC and Service Accounts
+    - Restrict Administrator Privileges
+    - Minimize access to secrets
+    - Establish and Maintain a Secure Configuration Process
+    - Review and update documentation annually
+    - End-user devices, including portable and mobile, non-computing/IoT devices,
+      and servers
+    - Software (operating systems and applications)
+    - Namespace-controller
+    - Persistent Volume-binder
+    - Expand-controller
+    - Generic-garbage-collector
+    - ServiceAccount
+    - Kubernetes API
+    - Kubernetes Control Plane
+    - Kubelet Configuration
+    - kubelet Service File
+    - kubelet-config.json
+    - kubelet-service.d/10-kubelet-args.conf
+    - Audit
+    - RBAC and Service Accounts
+    - Restrict Administrator Privileges
+    - Minimize access to secrets
+    - Establish and Maintain a Secure Configuration Process
+    - Review and update documentation annually
+    - End-user devices, including portable and mobile, non-computing/IoT devices,
+      and servers
+    - Software (operating systems and applications)
+    - Namespace-controller
+    - Persistent Volume-binder
+    - Expand-controller
+    - Generic-garbage-collector
+    - ServiceAccount
+    - Kubernetes API
+    - Kubernetes Control Plane
+    - Kubelet Configuration
+    - kubelet Service File
+    - kubelet-config.json
+    - kubelet-service.d/10-kubelet-args.conf
+    - Audit
+  element10:
+    name: defaultServiceAccount
+    requirements:
+    - 'automountServiceAccountToken: false'
+    references:
+    - 1. Kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. Kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://aws.github.io/aws-eks-best-practices/iam/#disable-auto-mounting-of-service-account-tokens
+    - 16.9 Disable Dormant Accounts
+    - 7. Ensure the Use of Dedicated Administrative Accounts
+    - 16.8 Disable Dormant Accounts
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://aws.github.io/aws-eks-best-practices/iam/#disable-auto-mounting-of-service-account-tokens
+    - 16.9 Disable Dormant Accounts
+    - 4.3 Ensure that Service Account Tokens are only mounted
+    - 16.9 Disable Dormant Accounts
+    - 16.9 Disable Dormant Accounts
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://aws.github.io/aws-eks-best-practices/iam/#disable-auto-mounting-of-service-account-tokens
+    - 16.9 Disable Dormant Accounts
+    - 4.3 Ensure the Use of Dedicated Administrative Accounts
+    - 16.9 Disable Dormant Accounts
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://aws.github.io/aws-eks-best-practices/iam/#disable-auto-mounting-of-service-account-tokens
+    - 16.9 Disable Dormant Accounts
+    - 4.3 Ensure that Service Account Tokens are only mounted
+    - 16.9 Disable Dormant Accounts
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://aws.github.io/aws-eks-best-practices/iam/#disable-auto-mounting-of-service-account-tokens
+    - 16.9 Disable Dormant Accounts
+    - 4.3 Ensure the Use of Dedicated Administrative Accounts
+    - 16.9 Disable Dormant Accounts
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 1. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+    - 2. https://aws.github.io/aws-eks-best-practices/iam/#disable-auto-mounting-of-service-account-tokens
+    - 16.9 Disable Dormant Accounts
+    - 4.3 Ensure that Service Account Tokens are only mounted
+  element11:
+    name: Cluster Access Manager API
+    requirements:
+    - Simplified Access Management
+    - Enhanced Security Controls
+    - Improved Visibility and Auditing
+    - Faster and Safer Access Provisioning
+    - Future-Proofing and Alignment with AWS Best Practices
+  element12:
+    name: privileged_container_access
+    requirements:
+    - Kubernetes API access
+    - Privileged container access
+    - Pod Security Admission
+    audit:
+    - Review users with access to validatingwebhookconfigurations
+    - Review users with access to mutatingwebhookconfigurations
+    remediation:
+    - Remove access to validatingwebhookconfigurations or mutatingwebhookconfigurations
+    - Implement Pod Security Admission
+    - Disable deprecated pod security policy (preview)
+    - Add policies to each namespace in the cluster with user workloads
+  element13:
+    name: hostIPC
+    requirements:
+    - Do not generally permit containers to be run with the hostIPC flag set to true.
+    - Ensure that all users with administrative account access use a dedicated or
+      secondary account for elevated activities.
+  element14:
+    name: AllowPrivilegeEscalation
+    requirements:
+    - Manual
+    analysis:
+    - AllowPrivilegeEscalation
+  element15:
+    name: Kubernetes Network Policies
+    requirements:
+    - Implement Network Policies
+    - Restrict Traffic
+    impact: None
+    audit: Review CNI plugin support
+    remediation: Follow documentation and create NetworkPolicy objects
+    default_value: Depends on CNI plugin
+    references:
+    - https://kubernetes.io/docs/concepts/services-networking/networkpolicies/
+    - https://octetz.com/posts/k8s-network-policy-apis
+  element16:
+    name: Secrets Management Implementation
+    requirements:
+    - Refer to your cloud provider or third-party secrets management solution.
+    - Default Value: By default, no external secret management is configured.
+    CIS Controls:
+    - Control IG 1
+    - Control IG 2
+    - Control IG 3
+  element17:
+    name: ecr:CreateRepository
+    requirements:
+    - ecr:CreateRepository
+  element18:
+    name: Cluster Service Account with Storage Object Viewer Role
+    requirements:
+    - Restrict Administrator Privileges to Dedicated Administrator Accounts
+    - "Restrict administrator privileges to dedicated administrator accounts on \u25CF\
+      \ \u25CF \u25CF enterprise assets."
+    - "Conduct general computing activities, such as internet browsing, email, and\
+      \ productivity suite use, from the user\u2019s primary, non-privileged account."
+    - Ensure that all users with administrative account access use a dedicated or
+      secondary account for elevated activities.
+    - Minimize cluster access to read-only for Amazon ECR (Manual) Profile Applicability
+    - Use approved container registries.
+    - 'Define your approval criteria: Determine the criteria that containers must
+      meet to be considered approved.'
+    - 'Identify all existing ECR registries: Identify all ECR registries that are
+      currently being used in your organization.'
+    - 'Evaluate ECR registries against approval criteria: Evaluate each ECR registry
+      against your approval criteria to determine whether it should be approved or
+      not.'
+    - 'Establish policies and procedures: Establish policies and procedures that outline
+      how ECR registries will be approved, maintained, and monitored.'
+    - 'Implement access controls: Implement access controls to ensure that only approved
+      ECR registries are used to store and distribute container images.'
+  element19:
+    name: ECR Registries
+    requirements:
+    - Continue to meet your approval criteria
+    - Page 122 Internal Only - General regularly reviewing access logs, scanning for
+      vulnerabilities, and conducting periodic audits.
+    - By following these steps, you can minimize AWS ECR container registries to only
+      those approved
+    - AWS provides several tools and services that can help you manage your ECR registries
+    - AWS Config, AWS CloudFormation, and AWS Identity and Access Management (IAM)
+    - 'Default Value: Container registries are not restricted by default and Kubernetes
+      assumes your default CR is Docker Hub.'
+    - 'References: 1. https://aws.amazon.com/blogs/opensource/using-open-policy-agent-on-amazon-eks/
+      CIS Controls: Controls Control IG 1 IG 2 IG 3 Version 2.5'
+  element20:
+    name: Identity and Access Management (IAM)
+    requirements:
+    - Prefer using dedicated EKS Service Accounts (Automated)
+    - "Profile Applicability: \u2022 Level 1"
+    - 'Description: Kubernetes workloads should not use cluster node service accounts
+      to authenticate to Amazon EKS APIs.'
+    - 'Rationale: Manual approaches for authenticating Kubernetes workloads running
+      on Amazon EKS against AWS APIs are...'
+    - 'Audit: For each namespace in the cluster, review the rights assigned to the
+      default service account and ensure that it has no roles or cluster roles bound
+      to it apart from the defaults.'
+    - 'Additionally ensure that the automountServiceAccountToken: false setting is
+      in place for each default service account.'
+    - 'Remediation: With IAM roles for service accounts on Amazon EKS clusters, you
+      can associate an IAM role with a Kubernetes service account. This service account
+      can then provide AWS permissions to the containers in any pod that uses that
+      service account.'
+    - "The IAM roles for service accounts feature provides the following benefits:\
+      \ \u2022 Least privilege \u2014 By using the IAM roles for service accounts\
+      \ feature, you no longer need to provide extended permissions to the worker\
+      \ node IAM role so that..."
+    - Applications must sign their AWS API requests with AWS credentials.
+    - "The IAM roles for service accounts feature provides the following benefits:\
+      \ \u2022 Least privilege \u2014 By using the IAM roles for service accounts\
+      \ feature, you no longer need to provide extended permissions to the worker\
+      \ node IAM role so that..."
+    - " \u2022 Credential isolation \u2014 A container can only retrieve credentials\
+      \ for the IAM role that is associated with the service account to which it belongs.\
+      \ A container never has access to credentials that are intended for another\
+      \ container that belongs to another pod."
+    - " \u2022 Audit-ability \u2014 Access and event logging is available through\
+      \ CloudTrail to help ensure retrospective auditing."
+    - To get started, see list text hereEnabling IAM roles for service accounts on
+      your cluster.
+    - 'For an end-to-end walkthrough using eksctl, see Walkthrough: Updating a DaemonSet
+      to use IAM for service accounts.'
+    - 'References: 1. https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html
+      2. https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts-cni-walkthrough.html
+      3. https://aws.github.io/aws-eks-best-practices/security/docs/iam/#scope-the-iam-
+      role-trust-policy-for-irsa-to-the-service-account-name'
+  element21:
+    name: AWS EKS Key Management Service
+    requirements:
+    - Ensure Kubernetes Secrets are encrypted using Customer Master Keys (CMKs) managed
+      in AWS KMS (Manual)
+  element22:
+    name: Encryption Provider Support
+    requirements:
+    - Use AWS Key Management Service (KMS) keys
+    - Implement envelope encryption of Kubernetes secrets
+    - Using this functionality, you can use a key, that you manage in AWS KMS, to
+      encrypt data at the application layer.
+    remediation: This process can only be performed during Cluster Creation. Enable
+      'Secrets Encryption' during Amazon EKS cluster creation as described in the
+      links within the 'References' section.
+    default_value: By default secrets created using the Kubernetes API are stored
+      in tmpfs and are encrypted at rest.
+    references:
+    - https://aws.amazon.com/about-aws/whats-new/2020/03/amazon-eks-adds- envelope-encryption-for-secrets-with-aws-kms/
+    - https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeCluster.html
+  element23:
+    name: AmazonEKSNetworkingPolicy
+    requirements:
+    - enableNetworkPolicy
+    - strengthen cluster security posture
+    - enforce zero-trust networking principles
+    - ensure compliance with organizational and regulatory access control standards
+    - reduce lateral movement
+    - ensure only explicitly authorized traffic is permitted within the cluster
+    - reduce the attack surface
+    - mitigate the risk of lateral movement
+    - ensure that only explicitly authorized traffic is permitted within the cluster
+    - reduce operational overhead
+    - simplify governance in modern containerized environments
+  element24:
+    name: Anonymous Auth
+    requirements:
+    - Not Set
+    - Not Used
+  element25:
+    name: Cluster Access Manager API
+    requirements:
+    - Streamline and enhance
+    - Manage access controls
+    - Minimize admission of privileged containers
+    - Minimize admission of containers wishing to share
+    - Minimize admission of containers wishing to share
+    - Minimize admission of containers wishing to share
+    - Minimize access to Amazon ECR
+    - Minimize cluster access to read-only for Amazon ECR
+    - Minimize Container Registries to only those approved
+    - Ensure Image Vulnerability Scanning using Amazon ECR
+    - Minimize user access to Amazon ECR
+    - Ensure CNI plugin supports network policies
+    - Ensure that all Namespaces have Network Policies
+    - Prefer using secrets as files over secrets as environment variables
+    - Consider external secret storage
+    - Create administrative boundaries between resources using namespaces
+    - The default namespace should not be used
+    - Ensure that Image Vulnerability Scanning using Amazon ECR
+    - Minimize cluster access to read-only for Amazon ECR
+    - Minimize Container Registries to only those approved
+    - Ensure that Kubernetes Secrets are encrypted using Customer Master Keys (CMKs)
+      managed in AWS KMS
+    - Restrict Access to the Control Plane Endpoint
+    - Page 157 Internal Only - General Recommendation Set Correctly Yes No
+    - 'Page 158 Internal Only - General Appendix: CIS Controls v7 Unmapped Recommendations
+      Recommendation Set Correctly Yes No'
+    - 'Page 159 Internal Only - General Appendix: CIS Controls v8 IG 1 Mapped Recommendations
+      Recommendation Set Correctly Yes No'
+    - Page 160 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 161 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 162 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 163 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 164 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 165 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 166 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 167 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 168 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 169 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 170 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 171 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 172 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 173 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 174 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 175 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 176 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 177 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 178 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 179 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 180 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 181 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 182 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 183 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 184 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 185 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 186 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 187 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 188 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 189 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 190 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 191 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 192 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 193 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 194 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 195 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 196 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 197 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 198 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 199 Internal Only - General Recommendation Set Correctly Yes No
+    - Page 200 Internal Only - General Recommendation Set Correctly Yes No
+  element26:
+    name: Minimize admission of privileged containers
+    requirements:
+    - Minimize the admission of containers wishing to share the host process ID namespace
+    - Minimize the admission of containers wishing to share the host IPC namespace
+    - Minimize the admission of containers wishing to share the host network namespace
+    - Minimize the admission of containers with allowPrivilegeEscalation
+    - Ensure CNI plugin supports network policies.
+    - Ensure that all Namespaces have Network Policies
+    - Prefer using secrets as files over secrets as environment variables
+    - Consider external secret storage
+    - The default namespace should not be used
+    - Ensure Image Vulnerability Scanning using Amazon ECR
+    - Ensure image scanning or a third party provider
+    - Minimize user access to Amazon ECR
+    - Minimize cluster access to read-only for Amazon ECR
+    - Minimize Container Registries to only those approved
+    - Ensure Kubernetes Secrets are encrypted using Customer Master Keys (CMKs) managed
+      in AWS KMS
+    - Restrict Access to the Control Plane Endpoint
+    - Ensure clusters are created with Private Endpoint Enabled and Public Access
+      Disabled
+    - Ensure clusters are created with Private Nodes Page 165 Internal Only - General
+      Recommendation Set Correctly Yes No
+    - Ensure AmazonEKSNetworkingPolicy is Enabled and set as appropriate
+    - Encrypt traffic to HTTPS load balancers with TLS certificates
+    - Minimize access to create persistent volumes
+    - Minimize access to the proxy sub-resource of nodes
+    - Minimize access to webhook configuration objects
+    - Minimize access to the service account token creation
+    - Ensure Cluster Access Manager API to streamline and enhance the management of
+      access controls within EKS clusters
+    - Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes
+      cluster
+    - Minimize access to create persistent volumes
+    - Minimize access to the proxy sub-resource of nodes
+    - Minimize access to webhook configuration objects
+    - Minimize access to the service account token creation
+    - Ensure Administrative Boundaries between resources using namespaces
+    - Prefer using dedicated EKS Service Accounts
+    - Manage Kubernetes RBAC users with AWS IAM Authenticator for Kubernetes or Upgrade
+      to AWS CLI
+    - Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes
+      cluster
+    - Minimize access to create persistent volumes
+    - Minimize access to the proxy sub-resource of nodes
+    - Minimize access to webhook configuration objects
+    - Minimize access to the service account token creation
+    - Ensure AmazonEKSNetworkingPolicy is Enabled and set as appropriate
+    - Encrypt traffic to HTTPS load balancers with TLS certificates
+    - Minimize access to create persistent volumes
+    - Minimize access to the proxy sub-resource of nodes
+    - Minimize access to webhook configuration objects
+    - Minimize access to the service account token creation
+    - Ensure Cluster Access Manager API to streamline and enhance the management of
+      access controls within EKS clusters
+    - Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes
+      cluster
+    - Minimize access to create persistent volumes
+    - Minimize access to the proxy sub-resource of nodes
+    - Minimize access to webhook configuration objects
+    - Minimize access to the service account token creation
+    - Ensure Administrative Boundaries between resources using namespaces
+    - Prefer using dedicated EKS Service Accounts
+    - Manage Kubernetes RBAC users with AWS IAM Authenticator for Kubernetes or Upgrade
+      to AWS CLI
+    - Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes
+      cluster
+    - Minimize access to create persistent volumes
+    - Minimize access to the proxy sub-resource of nodes
+    - Minimize access to webhook configuration objects
+    - Minimize access to the service account token creation
+    - Ensure AmazonEKSNetworkingPolicy is Enabled and set as appropriate
+    - Encrypt traffic to HTTPS load balancers with TLS certificates
+    - Minimize access to create persistent volumes
+    - Minimize access to the proxy sub-resource of nodes
+    - Minimize access to webhook configuration objects
+    - Minimize access to the service account token creation
+    - Ensure Cluster Access Manager API to streamline and enhance the management of
+      access controls within EKS clusters
+    - Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes
+      cluster
+few_shot_kdes:
+  element1:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - CIS Build Kits, or internally developed remediation methods should never be
+      applied to production systems without proper testing.
+  element2:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element3:
+    name: Audit Log Management Process
+    requirements:
+    - Establish and maintain an audit log management process that defines the v8
+    - "Collect audit logs. Ensure that logging, per the enterprise\u2019s audit log\
+      \ management process, has been enabled across enterprise assets."
+    - Ensure that local logging has been enabled on all systems and networking devices.
+    - Enable detailed logging v7
+    - Enable system logging to include detailed information such as an event source,
+      destination addresses, and other useful elements.
+  element4:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element5:
+    name: Data Access Control Lists
+    requirements:
+    - Configure data access control lists v8
+    - Configure data access control lists based on a user's need to know
+    - Apply data
+    audit:
+      method: 1
+      description: SSH to worker nodes
+  element6:
+    name: Kubelet Configuration File
+    requirements:
+    - 'The file can be viewed with a command such as more or less, like so: sudo less
+      /path/to/kubelet-config.json'
+    - The file can be in JSON or YAML format depending on your distribution.
+  element7:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element8:
+    name: Client Certificate Authority File
+    requirements:
+    - A client certificate authority file is configured.
+    - 'This may be configured using a command line argument to the kubelet service
+      with --client-ca-file or in the kubelet configuration file via ''authentication'':
+      { ''x509'': {''clientCAFile'': ''<path/to/client-ca-file>}'' }'
+  element9:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element10:
+    name: RotateKubeletServerCertificate
+    requirements:
+    - RotateKubeletServerCertificate causes the kubelet to both request a serving
+      certificate after bootstrapping its client credentials and rotate the certificate
+      as its existing credentials expire.
+  element11:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element12:
+    name: Authentication
+    requirements:
+    - User authentication will be handled via OAuth 2.0.
+  element13:
+    name: Encryption at Rest
+    requirements:
+    - Data at rest must be encrypted using AES-256.
+  element14:
+    name: Cluster Access Manager API
+    requirements:
+    - Simplifies access management
+    - Reduces risk of misconfigurations
+    - Enhances security
+    - Improves visibility and auditing
+    - Supports IAM best practices
+  element15:
+    name: Role-Based Access Control
+    requirements:
+    - Define and Maintain Role-Based Access Control
+    - Perform access control reviews of enterprise assets
+    - Minimize access to the proxy sub-resource of nodes
+  element16:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element17:
+    name: Admission Control
+    requirements:
+    - 'Rationale: The ability to use the proxy sub-resource of node objects opens
+      up possibilities for privilege escalation and should be restricted, where possible.'
+    - 'Impact: Review the users who have access to the proxy sub-resource of node
+      objects in the Kubernetes API.'
+    - 'Remediation: Where possible, remove access to the proxy sub-resource of node
+      objects.'
+  element18:
+    name: Encryption at Rest
+    requirements:
+    - Data at rest must be encrypted using AES-256.
+  element19:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element20:
+    name: Authentication
+    requirements:
+    - User authentication will be handled via OAuth 2.0.
+  element21:
+    name: Encryption at Rest
+    requirements:
+    - Data at rest must be encrypted using AES-256.
+  element22:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element23:
+    name: Authentication
+    requirements:
+    - User authentication will be handled via OAuth 2.0.
+  element24:
+    name: Encryption at Rest
+    requirements:
+    - Data at rest must be encrypted using AES-256.
+  element25:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element26:
+    name: Linux Distribution
+    requirements:
+    - Linux distributions
+    - Amazon ECR does not support scanning images built from the Docker scratch image.
+    - An UNDEFINED severity level is returned You may receive a scan finding that
+      has a severity level of UNDEFINED.
+    - 'The following are the common causes for this: The vulnerability was not assigned
+      a priority by the CVE source. The vulnerability was assigned a priority that
+      Amazon ECR did not recognize.'
+    - To determine the severity and description of a vulnerability, you can view the
+      CVE directly from the source.
+    - 'Audit: Please follow AWS ECS or your third party image scanning provider''s
+      guidelines for enabling Image Scanning.'
+    - Page 114 Internal Only - General aws ecr describe-repositories --repository-names
+      $REPO_NAME --region $REGION_CODE
+    - 'Remediation: To utilize AWS ECR for Image scanning please follow the steps
+      below:'
+    - To create a repository configured for scan on push (AWS CLI) aws ecr create-repository
+      --repository-name $REPO_NAME --image-scanning- configuration scanOnPush=true
+      --region $REGION_CODE
+    - To edit the settings of an existing repository (AWS CLI) aws ecr put-image-scanning-configuration
+      --repository-name $REPO_NAME -- image-scanning-configuration scanOnPush=true
+      --region $REGION_CODE
+    - Use the following steps to start a manual image scan using the AWS Management
+      Console.
+    - 3.1 Run Automated Vulnerability Scanning Tools
+    - 3.2 Perform Authenticated Vulnerability Scanning
+    - 3.3 Perform Unauthenticated Vulnerability Scanning
+    - 3.4 Perform Automated Vulnerability Scanning Tools
+    - 3.5 Minimize user access to Amazon ECR (Manual)
+    - "Profile Applicability: \u2022 Level 1"
+    - 'Description: Restrict user access to Amazon ECR, limiting interaction with
+      build images to only authorized personnel and service accounts.'
+    - 'Rationale: Weak access control to Amazon ECR may allow malicious users to replace
+      built images with vulnerable containers.'
+    - 'Impact: Care should be taken not to remove access to Amazon ECR for accounts
+      that require this for their operation.'
+    - 'Audit: Remediation: Before you use IAM to manage access to Amazon ECR, you
+      should understand what IAM features are available to use with Amazon ECR.'
+    - AWS Services That Work with IAM in the IAM User Guide.
+    - 'Topics:'
+    - Amazon ECR Identity-Based Policies
+    - Amazon ECR Resource-Based Policies
+    - Authorization Based on Amazon ECR Tags
+    - Amazon ECR IAM Roles
+    - Amazon ECR Identity-Based Policies
+    - 'Actions:'
+    - Action: ecr:CreateRepository
+    - 'Policy actions in Amazon ECR use the following prefix before the action: ecr:'
+    - Policy statements must include either an Action or NotAction element.
+    - Amazon ECR defines its own set of actions that describe tasks that you can perform
+      with this service.
+    - 'To specify multiple actions in a single statement, separate them with commas
+      as follows: ''Action'': [ ''ecr:action1'', ''ecr:action2'']'
+    - To see a list of Amazon ECR actions, see Actions, Resources, and Condition Keys
+      for Amazon Elastic Container Registry in the IAM User Guide.
+    - 'Resources:'
+    - Resource: arn:aws:ecr:us-east-1:123456789012:repository/my-repo
+    - Resource: arn:aws:ecr:us-east-1:123456789012:repository/*
+    - Resource: arn:aws:ecr:us-east-1:123456789012:repository:my-repo
+    - To see a list of Amazon ECR resource types and their ARNs, see Resources Defined
+      by Amazon Elastic Container Registry in the IAM User Guide.
+    - To learn with which actions you can specify the ARN of
+  element27:
+    name: Container Registry Access
+    requirements:
+    - Use approved container registries.
+    - Restrict administrator privileges to dedicated administrator accounts.
+    - Minimize Container Registries to only those approved.
+  element28:
+    name: ECR Registry Monitoring
+    requirements:
+    - Continuously monitor and review the use of ECR registries to ensure that they
+      continue to meet your approval criteria.
+    - By following these steps, you can minimize AWS ECR container registries to only
+      those approved.
+  element29:
+    name: Encryption Provider Support
+    requirements:
+    - Use AWS Key Management Service (KMS) keys to provide envelope encryption of
+      Kubernetes secrets stored in Amazon EKS.
+    - Implement envelope encryption is considered a security best practice for applications
+      that store sensitive data.
+    - Using this functionality, you can use a key, that you manage in AWS KMS, to
+      encrypt data at the application layer.
+  element30:
+    name: Firewall Configuration
+    requirements:
+    - AmazonEKSNetworkingPolicy is enabled and set as appropriate.
+    - Virtual firewall, operating system firewall, or third-party firewall agent are
+      implemented.
+  element31:
+    name: Kubernetes RBAC Management
+    requirements:
+    - Amazon EKS uses IAM to provide authentication to your Kubernetes cluster through
+      the AWS IAM Authenticator for Kubernetes.
+    - You can configure the stock kubectl client to work with Amazon EKS by installing
+      the AWS IAM Authenticator for Kubernetes and modifying your kubectl configuration
+      file to use it for authentication.
+  element32:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+  element33:
+    name: Authentication
+    requirements:
+    - User authentication will be handled via OAuth 2.0.
+    - System:masters permissions are configured in the Amazon EKS control plane.
+  element34:
+    name: Encryption at Rest
+    requirements:
+    - Data at rest must be encrypted using AES-256.
+  element35:
+    name: API Rate Limiting
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - User authentication will be handled via OAuth 2.0.
+    - Data at rest must be encrypted using AES-256.
+    - Audit Logs are collected and managed.
+    - kubeconfig file permissions are set to 644 or more restrictive.
+    - Kubelet kubeconfig file ownership is set to root:root.
+    - Ensure that the kubelet configuration file has permissions set to 644 or more
+      restrictive.
+    - Ensure that the kubelet configuration file ownership is set to root:root.
+    - Minimize user access to Amazon ECR.
+    - Minimize cluster access to read-only for Amazon ECR.
+    - Minimize Container Registries to only those approved.
+    - Ensure CNI plugin supports network policies.
+    - Ensure all Namespaces have Network Policies defined.
+    - Prefer using secrets as files over secrets as environment variables.
+    - Restrict Access to the Control Plane Endpoint.
+    - Ensure AmazonEKSNetworkingPolicy is Enabled and set as appropriate.
+    - Encrypt traffic to HTTPS load balancers with TLS certificates.
+    - Manage Kubernetes RBAC users with AWS IAM Authenticator for Kubernetes or Upgrade
+      to AWS CLI.
+    - Ensure Image Vulnerability Scanning using Amazon ECR.
+    - Minimize user access to Amazon ECR.
+    - Minimize wildcard use in Roles and ClusterRoles.
+    - Minimize access to create pods.
+  element36:
+    name: Minimize access to webhook configuration objects
+    requirements:
+    - All external-facing APIs must implement rate limiting.
+    - Minimize access to the service account token creation.
+    - Minimize access to the Kubernetes Benchmark v1.13
+    - Minimize access to the admission controls
+    - Minimize access to the control plane
+    - Minimize access to secrets
+    - Minimize access to create pods
+    - Minimize access to root containers
+    - Minimize access to containers wishing to share the host process ID namespace
+    - Minimize access to containers wishing to share the host IPC namespace
+    - Minimize access to containers wishing to share the host network namespace
+  element37:
+    name: Audit Procedure Update
+    requirements:
+    - Updated audit procedure 9/01/2022 1.2.0 Ticket 16612
+    - Updated out of date guidance 9/01/2022 1.2.0 Ticket 16674
+    - Updated description 9/01/2022 1.2.0 Ticket 15533
+    - Updated remediation process 9/01/2022 1.2.0 Ticket 15539
+    - Updated for EKS specifically Page 174 Internal Only - General Page 175 Internal
+      Only - General
+chain_of_thought_kdes:
+  element1:
+    name: Establishing Secure Configurations
+    requirements:
+    - Establish Secure Configurations
+  element2:
+    name: Control Plane Logging Configuration
+    requirements:
+    - Enable audit logs
+    - Ensure audit logs are collected and managed
+    description: Amazon EKS control plane logging configuration details.
+    references:
+    - https://kubernetes.io/docs/tasks/debug-application-cluster/audit/
+    - https://aws.github.io/aws-eks-best-practices/detective/
+    - https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
+    - https://docs.aws.amazon.com/eks/latest/userguide/logging-using-cloudtrail.html
+  element3:
+    name: Audit Logging
+    requirements:
+    - Verify audit logging is enabled for Kubernetes components
+    - Ensure the audit logs are being collected and sent to a centralized logging
+      system
+    - "Verify that the audit logs are being monitored and managed according to the\
+      \ enterprise\u2019s audit log management process"
+    - "Ensure that logging, per the enterprise\u2019s audit log management process,\
+      \ has been enabled across enterprise assets."
+  element4:
+    name: Configure Data Access Control Lists v8
+    requirements:
+    - Ensure that if the kubelet refers to a configuration file with the --config
+      argument, that file is owned by root:root
+    - Apply data
+    - Configure data access control lists, also known as access permissions, to local
+      and remote file systems, databases, and applications.
+    - Maintain secure images or templates for all systems in the enterprise based
+      on v7 the organization's approved configuration standards.
+    - Ensure that the kubelet configuration file ownership is set to root:root
+    - Create and Run a Privileged Pod
+  element5:
+    name: Anonymous Authentication
+    requirements:
+    - Disable Anonymous Authentication
+  element6:
+    name: Webhook Authentication Enabled
+    requirements:
+    - Verify that Webhook Authentication is enabled
+    - 'Enable Webhook Authentication by setting the following parameter: ''authentication'':
+      { ''webhook'': { ''enabled'': true } }'
+    - Verify that the Authorization Mode is set to Webhook
+    - Verify that the Authorization Mode is set to Webhook
+  element7:
+    name: Disable the read-only port
+    requirements:
+    - Disable the read-only port
+  element8:
+    name: makeIPTablesUtilChains
+    requirements:
+    - makeIPTablesUtilChains:true
+    description: Ensure that /etc/systemd/system/kubelet.service.d/10-kubelet-args.conf
+      does not set the --make-iptables-util-chains argument because that would override
+      your Kubelet config file.
+  element9:
+    name: Certificate Rotation
+    requirements:
+    - Ensure that local logging has been enabled on all systems and networking
+    - Enable Detailed Logging v7
+    - Ensure that the --rotate-certificates argument is not present or is set to true
+      (Automated)
+  element10:
+    name: Encryption at Rest
+    requirements:
+    - Encrypt sensitive data in transit using TLS and Open Secure Shell (OpenSSH).
+  element11:
+    name: Maintain Secure Images
+    requirements:
+    - Secure images or templates for all systems based on v7 the organization's approved
+      configuration standards.
+    - Use unique passwords for all enterprise assets.
+    - Restrict the ability to create pods in a cluster.
+    - Disable Dormant Accounts.
+    - Use Dedicated Administrative Accounts.
+  element12:
+    name: Cluster Access Manager API
+    requirements:
+    - Simplifies access management by eliminating manual updates to the aws-auth ConfigMap.
+    - Provides enhanced security controls through direct IAM permission assignment.
+    - Improves visibility and auditing capabilities through API integration with AWS
+      CloudTrail.
+    - Reduces operational overhead by automating access provisioning through Infrastructure
+      as Code (IaC).
+    - Enhances resilience against misconfigurations, minimizing the risk of downtime.
+    - Aligns with AWS's roadmap and best practices for EKS.
+  element13:
+    name: Cluster Access Manager API Activation
+    requirements:
+    - Verify Cluster Access Manager API is active on EKS cluster.
+  element14:
+    name: RBAC Access Control Restrictions
+    requirements:
+    - Restrict access to proxy sub-resource of node objects to prevent privilege escalation.
+    - Perform regular access control reviews of enterprise assets to validate all
+      privileges are authorized.
+    - Minimize access to webhook configuration objects (Manual).
+    - Remove access to validatingwebhookconfigurations or mutatingwebhookconfigurations
+      objects.
+    - Disable pod security policy (preview) on existing clusters.
+    - Add policies to each namespace in the cluster which has user workloads to restrict
+      the admission of privileged containers.
+    - Set pod- security.kubernetes.io/enforce label with the policy value you want
+      to enforce.
+  element15:
+    name: HostPID Restriction
+    requirements:
+    - Do not generally permit containers to be run with the hostPID flag set to true.
+  element16:
+    name: Restrict Administrator Privileges to Dedicated Administrator Accounts
+    requirements:
+    - Do not generally permit containers to be run with the allowPrivilegeEscalation
+      flag set to true.
+    - Do not generally permit containers to share the host network namespace.
+  element17:
+    name: Network Policies
+    requirements:
+    - Ensure that the CNI plugin in use does not support Network Policy unless Calico
+      is also in use
+  element18:
+    name: Encryption at Rest
+    requirements:
+    - Encrypt sensitive data at rest on servers, applications, and databases containing
+      sensitive data.
+  element19:
+    name: Automated Vulnerability Scans
+    requirements:
+    - Perform automated vulnerability scans of internal enterprise assets
+    - Conduct both authenticated and unauthenticated scans
+    - Utilize an up-to-date SCAP-compliant vulnerability scanning tool
+    - Minimize user access to Amazon ECR (Manual)
+    - Perform scans on a monthly, or more frequent, basis
+    - Perform authenticated vulnerability scanning with agents running locally on
+      each system or with remote scanners configured with elevated rights on the system
+      being tested
+    - Perform authenticated vulnerability scanning with agents running locally on
+      each system or with remote scanners that are configured with elevated rights
+      on the system being tested
+    - Perform authenticated vulnerability scanning with agents running locally on
+      each system or with remote scanners that are configured with elevated rights
+      on the system being tested
+  element20:
+    name: Restrict Administrator Privileges to Dedicated Administrator Accounts v8
+    requirements:
+    - "Restrict administrator privileges to dedicated administrator accounts on \u25CF\
+      \ \u25CF \u25CF enterprise assets."
+    - Minimize Cluster Access to Read-Only for Amazon ECR (Manual)
+    - Use Dedicated Administrative Accounts v7
+    - Minimize Container Registries to only those approved (Manual)
+    - Use approved container registries.
+  element21:
+    name: ECR Registry Access Control
+    requirements:
+    - Restrict ECR registry access to approved containers.
+    - Use dedicated EKS service accounts for Kubernetes workloads.
+    - Encrypt Kubernetes secrets using AWS KMS.
+  element22:
+    name: AWS Key Management Service (KMS) keys to provide envelope encryption of
+      Kubernetes secrets stored in Amazon EKS
+    requirements:
+    - Use AWS Key Management Service (KMS) keys to provide envelope encryption of
+      Kubernetes secrets stored in Amazon EKS
+  element23:
+    name: Network-Based URL Filters
+    requirements:
+    - "Enforce network-based URL filters that limit a system\u2019s ability to connect\
+      \ to v7 websites not approved by the organization."
+  element24:
+    name: Kubernetes Network Policies
+    requirements:
+    - By leveraging AmazonEKSNetworkingPolicy, enterprises can strengthen their cluster
+      security posture, enforce zero-trust networking principles, and ensure compliance
+      with organizational and regulatory access control standards.
+  element25:
+    name: Audit Logs
+    requirements:
+    - Enable audit Logs (Automated)
+    - Ensure audit logs are collected and managed (Manual)
+    - Minimize access to secrets (Manual)
+    - Minimize access to create pods (Manual)
+    - Minimize access to the proxy sub-resource of nodes (Manual)
+    - Minimize access to webhook configuration objects (Manual)
+    - Minimize access to the service account token creation (Manual)
+    - Minimize access to the container registries to only those approved (Manual)
+  element26:
+    name: Anonymous Auth
+    requirements:
+    - Not enabled
+    - Not set
+    - Not used
+    description: Ensure that the Anonymous Auth is Not Enabled
+  element27:
+    name: Cluster Access Management
+    requirements:
+    - Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes
+      cluster
+    - Ensure CNI plugin supports network policies.
+    - Minimize access to Amazon ECR
+    - Minimize cluster access to read-only for Amazon ECR
+    - Minimize Container Registries to only those approved
+    - Enable audit Logs
+    - Ensure that all Namespaces have Network Policies
+    - Prefer using secrets as files over secrets as environment variables
+    - Create administrative boundaries between resources using namespaces
+    - The default namespace should not be used
+    - Ensure Image Vulnerability Scanning using Amazon ECR
+    - Minimize user access to Amazon ECR
+    - Ensure clusters are created with Private Endpoint Enabled and Public Access
+      Disabled
+    - Ensure clusters are created with Private Nodes
+  element28:
+    name: Minimize admission of privileged containers
+    requirements:
+    - Limit container access to the host process ID namespace
+    - Limit container access to the host IPC namespace
+    - Limit container access to the host network namespace
+    - Minimize admission of containers wishing to share the host process ID namespace
+    - Minimize admission of containers wishing to share the host IPC namespace
+    - Minimize admission of containers wishing to share the host network namespace
+    - Minimize admission of containers with allowPrivilegeEscalation
+    - Ensure CNI plugin supports network policies
+    - Ensure that all Namespaces have Network Policies
+    - Prefer using secrets as files over secrets as environment variables
+    - Restrict Access to the Control Plane Endpoint
+    - Ensure clusters are created with Private Endpoint Enabled and Public Access
+      Disabled
+    - Ensure clusters are created with Private Nodes
+    - Ensure AmazonEKSNetworkingPolicy is Enabled and set
+    - Limit use of the Bind, Impersonate and Escalate permissions in the Kubernetes
+      cluster
+    - Minimize access to create persistent volumes
+    - Minimize access to the proxy sub-resource of nodes
+    - Minimize access to webhook configuration objects
+    - Minimize access to the service account token creation
+    - Manage Kubernetes RBAC users with AWS IAM Authenticator for Kubernetes or Upgrade
+      to AWS CLI v1.16.156 or greater
+  element29:
+    name: Minimize access to webhook configuration objects
+    requirements:
+    - "Added recommendation 4.1.12 \u201CMinimize access to the service account token\
+      \ creation\u201D"
+    - Modified recommendation 4.1.6 to align with Kubernetes Benchmark v1.13
+    - Modified recommendation 4.1.1 to align with Kubernetes Benchmark v1.13
+    - Modified recommendation 4.1.2 to align with Kubernetes Benchmark v1.13
+    - Modified recommendation 4.1.3 to align with Kubernetes Benchmark v1.13
+    - Modified recommendation 4.1.4 to align with Kubernetes Benchmark v1.13
+    - Modified recommendation 4.1.5 to align with Kubernetes Benchmark v1.13
+    description: Recommended to minimize access to webhook configuration objects to
+      reduce potential security risks.
+  element30:
+    name: Encryption at Rest
+    requirements:
+    - Updated audit procedure
