@@ -6,11 +6,6 @@ import torch
 import yaml
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-try:
-    from google.colab import userdata
-except ImportError:
-    userdata = None
-
 
 # ---------------------------------------------------------------------------
 # Task 1a – Input validation and text extraction
